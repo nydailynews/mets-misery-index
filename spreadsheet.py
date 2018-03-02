@@ -10,11 +10,11 @@ class Sheet:
         True
         """
 
-    def __init__(self, sheet_name, worksheet=None)
+    def __init__(self, sheet_name, worksheet=None):
         """ Create an object.
             >>> sheet = Sheet('test-sheet', 'worksheet-name')
             """
-	self.options = None
+        self.options = None
         self.directory = os.path.dirname(os.path.realpath(__file__))
         if not os.path.isdir('%s/output' % self.directory):
             os.mkdir('%s/output' % self.directory)
@@ -121,7 +121,7 @@ def main(args):
         Example command:
         $ python spreadsheet.py date=2018-01-04
         """
-    sheet = Sheet('Misery Index', 'responses')
+    sheet = Sheet('NYDN Sports', 'mets-misery-2018')
     sheet.options = args
     sheet.publish()
 
@@ -130,9 +130,10 @@ if __name__ == '__main__':
                                      description='',
                                      epilog='')
     parser.add_argument("-v", "--verbose", dest="verbose", default=False, action="store_true")
+    parser.add_argument("-t", "--test", dest="test", default=False, action="store_true")
     args = parser.parse_args()
 
-    if args.verbose:
+    if args.test:
         doctest.testmod(verbose=args.verbose)
 
     main(args)
