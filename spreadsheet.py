@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import gspread
 from oauth2client.client import SignedJwtAssertionCredentials
 import argparse
@@ -22,7 +23,7 @@ class Sheet:
         scope = ['https://spreadsheets.google.com/feeds']
         self.credentials = SignedJwtAssertionCredentials(
             os.environ.get('ACCOUNT_USER'),
-            string.replace(os.environ.get('ACCOUNT_KEY'), "\\n", "\n"),
+            os.environ.get('ACCOUNT_KEY').replace("\\n", "\n"),
             scope)
         self.spread = gspread.authorize(self.credentials)
         self.sheet_name = sheet_name
