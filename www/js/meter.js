@@ -9,33 +9,29 @@ var opts = {
 },
 
     staticZones: [
-        {strokeStyle: "#A0C42E", min: 0, max: 33}, // Green
-        {strokeStyle: "#FCD13E", min: 33, max: 66}, // Yellow
-        {strokeStyle: "#EC2127", min: 66, max: 100}, // Red
+        {strokeStyle: "#B2C0D4", min: 0, max: 3}, // Light blue
+        {strokeStyle: "#6681AA", min: 3, max: 7}, // Mid blue
+        {strokeStyle: "#002D72", min: 7, max: 10}, // Dark blue
         ],
 
     staticLabels: {
         font: "10px sans-serif",  // Specifies font
-        labels: [0, 25, 50, 75, 100],  // Print labels at these values
+        labels: [0, 1, 3, 5, 7, 9, 10],  // Print labels at these values
         color: "#000000",  // Optional: Label text color
         fractionDigits: 0  // Optional: Numerical precision. 0=round off.
     },
 
     renderTicks: {
-        divisions: 4,
+        divisions: 10,
         divWidth: 1,
-        divLength: 0.75,
-        divColor: '#000000',
-        subDivisions: 2,
-        subLength: 0.375,
-        subWidth: 1,
-        subColor: '#333333'
+        divLength: 0.375,
+        divColor: '#FFFFFF',
     },
 };
 
 var target = document.getElementById('meter'); // your canvas element
 var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-gauge.maxValue = 100; // set max gauge value
+gauge.maxValue = 10; // set max gauge value
 gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
 gauge.animationSpeed = 25; // set animation speed)
-gauge.set(50); // set actual value
+gauge.set(5); // set actual value
