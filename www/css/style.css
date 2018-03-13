@@ -16,6 +16,7 @@ h2 {
 	font-size: 18px;
 	margin-bottom: 10px;
 	text-transform: uppercase;
+	text-align: left;
 }
 
 p.description {
@@ -93,10 +94,12 @@ article {
 .commentary {
 	grid-column: 1;
 	grid-row: 3;
-	margin-top: 30px;
+/*	margin-top: 0px;
+	margin-bottom: 0px;*/
+	max-width: 300px;
 }
 
-.commentary p, .recent-news p, .injuries p {
+.recent-news p, .injuries p {
 	font: normal 14px 'Open Sans', sans-serif;
 	line-height: 19px;
 	text-align: left;
