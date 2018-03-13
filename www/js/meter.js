@@ -15,9 +15,9 @@ var opts = {
         ],
 
     staticLabels: {
-        font: "10px sans-serif",  // Specifies font
+        font: "11px sans-serif",  // Specifies font
         labels: [0, 1, 3, 5, 7, 9, 10],  // Print labels at these values
-        color: "#000000",  // Optional: Label text color
+        color: "#FFFFFF",  // Optional: Label text color
         fractionDigits: 0  // Optional: Numerical precision. 0=round off.
     },
 
@@ -29,7 +29,7 @@ var opts = {
     },
 };
 
-var target = document.getElementById('meter'); // your canvas element
+var target = document.getElementById('ometer'); // your canvas element
 var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
 gauge.maxValue = 10; // set max gauge value
 gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
