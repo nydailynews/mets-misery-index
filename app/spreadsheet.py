@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Class for interfacing with Google Sheets
 import os
 import gspread
 from oauth2client.client import SignedJwtAssertionCredentials
