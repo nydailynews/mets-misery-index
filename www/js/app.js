@@ -20,9 +20,25 @@ var util = {
         request.send();
     }
 }
+
 // COLOR COMMENTARY
 var commentary = {
     init: function() {
         this.data = utils.get_json('../output/mets-commentary-2018.json');
     }
 }
+
+// MISERY INDEX
+var misery = {
+    init: function() {
+        this.data = utils.get_json('../output/mets-misery-2018.json');
+    }
+}
+
+// INJURY TRACKER
+var injuries = {
+    init: function() {
+        this.data = utils.get_json('../output/mets-injuries-2018.json');
+    }
+}
+
