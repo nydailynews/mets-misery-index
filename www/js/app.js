@@ -31,7 +31,9 @@ var utils = {
 // COLOR COMMENTARY
 // First init fires, then on_load.
 var commentary = {
-	load_quote: function(record) {},
+	load_quote: function(record) {
+		// Given a quote and a source, populate the color commentary with the quote.
+	},
 	load_tweet: function(record) {
 		// Given a tweet url, populate the color commentary section and load the twitter javascript.
 		console.log(this);
@@ -39,7 +41,6 @@ var commentary = {
 		utils.add_js('https://platform.twitter.com/widgets.js', {});
 	},
 	on_load: function() {
-		console.log('wheee');
 		// The latest item in this.data is the one we put on the page.
 		var latest = commentary.data.pop();
 		if ( latest['twitter-url'] == '' ) commentary.load_quote(latest);
