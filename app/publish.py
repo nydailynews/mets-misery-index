@@ -32,10 +32,18 @@ class Misery:
         self.sheet = sheet
 
     def build_score_list(self):
-        pass
+        """ Build a per-day list of misery scores, ala
+            """
+        new_rows = []
+        for row in self.sheet.rows:
+            print(row)
 
     def publish(self):
-        pass
+        """ Build the modified misery list.
+            """
+        self.sheet.rows = self.build_score_list()
+        self.sheet.publish()
+        return True
 
 def main(args):
     """ Handle the command line.
@@ -49,7 +57,7 @@ def main(args):
     # We want to build a list of per-day misery scores too
     if 'misery' in args.sheet:
         m = Misery(sheet)
-        m.publish
+        m.publish()
 
 def build_parser(args):
     """ Handle the argparse and make it testable.
