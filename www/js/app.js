@@ -50,21 +50,26 @@ var commentary = {
         this.data = utils.get_json('output/mets-commentary-2018.json', commentary, this.on_load);
     }
 }
-commentary.init();
+//commentary.init();
 
 // MISERY INDEX
 // First init fires, then on_load.
 var misery = {
+	on_load: function() {
+	},
     init: function() {
-        this.data = utils.get_json('../output/mets-misery-2018.json');
+        this.data = utils.get_json('../output/mets-misery-2018.json', misery, this.on_load);
     }
 }
+misery.init();
 
 // INJURY TRACKER
 // First init fires, then on_load.
 var injuries = {
+	on_load: function() {
+	},
     init: function() {
-        this.data = utils.get_json('../output/mets-injuries-2018.json');
+        this.data = utils.get_json('../output/mets-injuries-2018.json', injuries, this.on_load);
     }
 }
 
