@@ -24,10 +24,18 @@ class Commentary:
 
 class Misery:
     """ Publish the misery spreadsheet.
+        This is different from sheet.publish because we write two json files,
+        one with the recent misery and then another with the per-day misery scores.
         """
 
     def __init__(self, sheet):
         self.sheet = sheet
+
+    def build_score_list(self):
+        pass
+
+    def publish(self):
+        pass
 
 def main(args):
     """ Handle the command line.
@@ -36,12 +44,12 @@ def main(args):
     sheet.options = args
     sheet.rows = sheet.get_sheet_rows()
     sheet.rows = sheet.filter_mostly_blank_rows(sheet.rows)
+    sheet.publish()
 
+    # We want to build a list of per-day misery scores too
     if 'misery' in args.sheet:
         m = Misery(sheet)
         m.publish
-    else:
-        sheet.publish()
 
 def build_parser(args):
     """ Handle the argparse and make it testable.
