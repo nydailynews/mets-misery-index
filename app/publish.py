@@ -35,7 +35,7 @@ def main(args):
     sheet = Sheet('NYDN Sports', args.sheet)
     sheet.options = args
     sheet.rows = sheet.get_sheet_rows()
-    sheet.rows = sheet.filter_blanks_by_date(sheet.rows)
+    sheet.rows = sheet.filter_mostly_blank_rows(sheet.rows)
 
     if 'misery' in args.sheet:
         m = Misery(sheet)

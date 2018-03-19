@@ -100,13 +100,13 @@ class Sheet:
         rows = self.sheet.get_all_values()
         return rows
 
-    def filter_blanks_by_date(self, rows):
+    def filter_mostly_blank_rows(self, rows):
         """ Given a list of lists, go through each list.
             If only one field in that list is filled out, skip it.
             Returns a new list of rows.
             >>> sheet = Sheet('test-sheet', 'worksheet-name')
             >>> sheet.rows = sheet.get_sheet_rows()
-            >>> sheet.rows = sheet.filter_blanks_by_date()
+            >>> sheet.rows = sheet.filter_mostly_blank_rows()
             """
         new_rows = []
         for row in rows:
@@ -164,7 +164,7 @@ def main(args):
     sheet = Sheet('NYDN Sports', 'mets-misery-2018')
     sheet.options = args
     sheet.rows = sheet.get_sheet_rows()
-    sheet.rows = sheet.filter_blanks_by_date(sheet.rows)
+    sheet.rows = sheet.filter_mostly_blank_rows(sheet.rows)
     sheet.publish()
 
 if __name__ == '__main__':
