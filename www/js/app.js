@@ -2,7 +2,7 @@
 
 // UTILS
 var utils = {
-   get_json: function(path, obj, callback) {
+    get_json: function(path, obj, callback) {
         // Downloads local json and returns it.
         // Cribbed from http://youmightnotneedjquery.com/
         var request = new XMLHttpRequest();
@@ -11,7 +11,7 @@ var utils = {
         request.onload = function() {
             if ( request.status >= 200 && request.status < 400 ) {
                 obj.data = JSON.parse(request.responseText);
-				callback();
+                callback();
             }
             else {
                 return false;
@@ -20,7 +20,7 @@ var utils = {
         request.onerror = function() {};
         request.send();
     },
-	add_js: function(src, callback) {
+    add_js: function(src, callback) {
         var s = document.createElement('script');
         s.onload = function() { callback(); }
         s.setAttribute('src', src);
@@ -31,21 +31,33 @@ var utils = {
 // COLOR COMMENTARY
 // First init fires, then on_load.
 var commentary = {
-	load_quote: function(record) {
-		// Given a quote and a source, populate the color commentary with the quote.
-	},
-	load_tweet: function(record) {
-		// Given a tweet url, populate the color commentary section and load the twitter javascript.
-		console.log(this);
-		document.getElementById('tweet-link').setAttribute('href', record['twitter-url']);
-		utils.add_js('https://platform.twitter.com/widgets.js', {});
-	},
-	on_load: function() {
-		// The latest item in this.data is the one we put on the page.
-		var latest = commentary.data.pop();
-		if ( latest['twitter-url'] == '' ) commentary.load_quote(latest);
-		else commentary.load_tweet(latest);
-	},
+    config: {
+    },
+    update_config: function(config) {
+        // Take an external config object and update this config object.
+        for ( var key in config )
+        {
+            if ( config.hasOwnProperty(key) )
+            {
+                this.config[key] = config[key];
+            }
+        }
+    },
+    load_quote: function(record) {
+        // Given a quote and a source, populate the color commentary with the quote.
+    },
+    load_tweet: function(record) {
+        // Given a tweet url, populate the color commentary section and load the twitter javascript.
+        console.log(this);
+        document.getElementById('tweet-link').setAttribute('href', record['twitter-url']);
+        utils.add_js('https://platform.twitter.com/widgets.js', {});
+    },
+    on_load: function() {
+        // The latest item in this.data is the one we put on the page.
+        var latest = commentary.data.pop();
+        if ( latest['twitter-url'] == '' ) commentary.load_quote(latest);
+        else commentary.load_tweet(latest);
+    },
     init: function() {
         this.data = utils.get_json('output/mets-commentary-2018.json', commentary, this.on_load);
     }
@@ -55,8 +67,25 @@ var commentary = {
 // MISERY INDEX
 // First init fires, then on_load.
 var misery = {
-	on_load: function() {
-	},
+    config: {
+    },
+    update_config: function(config) {
+        // Take an external config object and update this config object.
+        for ( var key in config )
+        {
+            if ( config.hasOwnProperty(key) )
+            {
+                this.config[key] = config[key];
+            }
+        }
+    },
+    build_recent_misery: function() {
+    },
+    build_daily_misery: function() {
+        // Build out the daily misery chart
+    },
+    on_load: function() {
+    },
     init: function() {
         this.data = utils.get_json('../output/mets-misery-2018.json', misery, this.on_load);
     }
@@ -66,8 +95,20 @@ misery.init();
 // INJURY TRACKER
 // First init fires, then on_load.
 var injuries = {
-	on_load: function() {
-	},
+    config: {
+    },
+    update_config: function(config) {
+        // Take an external config object and update this config object.
+        for ( var key in config )
+        {
+            if ( config.hasOwnProperty(key) )
+            {
+                this.config[key] = config[key];
+            }
+        }
+    },
+    on_load: function() {
+    },
     init: function() {
         this.data = utils.get_json('../output/mets-injuries-2018.json', injuries, this.on_load);
     }
