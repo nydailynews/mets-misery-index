@@ -34,6 +34,7 @@ def main(args):
         """
     sheet = Sheet('NYDN Sports', args.sheet)
     sheet.options = args
+    sheet.publish()
 
 def build_parser(args):
     """ Handle the argparse and make it testable.
@@ -42,7 +43,7 @@ def build_parser(args):
         True
         """
     parser = argparse.ArgumentParser(usage = '$ python publish.py --sheet mets-misery-2018',
-                                        description='''Downloads, filters and re-publishes a Google Sheet tab.'''
+                                        description='''Downloads, filters and re-publishes a Google Sheet tab.''',
                                         epilog='')
     parser.add_argument('-v', '--verbose', dest='verbose', default=False, action='store_true')
     parser.add_argument('-t', '--test', dest='test', default=False, action='store_true')

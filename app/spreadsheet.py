@@ -4,6 +4,9 @@ import os
 import gspread
 from oauth2client.client import SignedJwtAssertionCredentials
 import argparse
+import csv
+from collections import OrderedDict
+import json
 
 class Sheet:
     """ The interface for querying Google Sheets.
@@ -98,19 +101,18 @@ class Sheet:
         rows = self.sheet.get_all_values()
         keys = rows[0]
         fn = {
-            'json': open('%s/output/%s.json' % (self.directory, self.filename), 'wb'),
-            'csv': open('%s/output/%s.csv' % (self.directory, self.filename), 'wb')
+            'json': open('%s/output/%s.json' % (self.directory, self.filename), 'w'),
+            'csv': open('%s/output/%s.csv' % (self.directory, self.filename), 'w')
         }
-        recordwriter = csv.writer(
-            fn['csv'], delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        recordwriter = csv.DictWriter(
+            fn['csv'], keys, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        recordwriter.writeheader()
         records = []
         for i, row in enumerate(rows):
             if i == 0:
-                keys = row
-                recordwriter.writerow(keys)
                 continue
             record = OrderedDict(zip(keys, row))
-            recordwriter.writerow(row)
+            recordwriter.writerow(record)
             records += [record]
 
         if records:
