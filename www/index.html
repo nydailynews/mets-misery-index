@@ -112,10 +112,10 @@
 <main>
 	<article>
 		<div class="grid-wrapper">
-			<div class="intro-text">
+			<section class="intro-text">
 				<h1>Some Mets Misery hedline here</h1>
 				<p class="description">Some kind of intro goes here</p>
-			</div>
+			</section>
 
 			<div class="main-image">
 				<img src="img/sad-mets-fan.jpg">
@@ -132,21 +132,57 @@
 
 			<section class="commentary">
 				<blockquote id="tweet" class="twitter-tweet" data-lang="en"><a id="tweet-link"></a></blockquote>
-                <!--
-				<blockquote class="twitter-tweet" data-lang="en"><a href="https://twitter.com/cara_jeffrey/status/968615586153590784?ref_src=twsrc%5Etfw"></a></blockquote>
-				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                -->
+            </section>
 
+            <section class="injuries">
+				<h2>Injury tracker</h2>
+				<table>
+					<thead>
+						<td>Player</td>
+						<td>Position</td>
+						<td>DL stint</td>
+						<td>Effective date</td>
+					</thead>
+					<tr>
+						<td>Cessa</td>
+						<td>RHP</td>
+						<td>10-day</td>
+						<td>August 15, 2017</td>
+					</tr>
+					<tr>
+						<td>Pineda</td>
+						<td>P</td>
+						<td>60-day</td>
+						<td>July 17, 2017</td>
+					</tr>
+				</table>	
+			</section>
+
+			<section class="fan-misery">
+				<h2>Rate your fan misery</h2>
+				<p>On a scale of 0 to 10, how miserable are you as a Mets fan?</p>
+				<div class="range-slider">
+					<input class="range-slider__range" type="range" value="3" min="0" max="10" list="ticks">
+					<datalist id="ticks">
+						<option value="0">
+						<option value="1">
+						<option value="2">
+						<option value="3">
+						<option value="4">
+						<option value="5">
+						<option value="6">
+						<option value="7">
+						<option value="8">
+						<option value="9">
+						<option value="10">
+  					</datalist>
+					<span class="range-slider__value">3</span>
+				</div>
 			</section>
 			
 			<section class="recent-news">
 				<h2>Recent misery</h2>
 				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			</section>
-			
-			<secrion class="injuries">
-				<h2>Injury tracker</h2>
-				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 			</section>
 			
 			<section class="daily-chart">
@@ -182,7 +218,28 @@ AD ENDS HERE -->
 
 <!-- JAVASCRIPTS CALLS -->
 	<script src='https://bernii.github.io/gauge.js/dist/gauge.min.js'></script>
-	<script  src="js/meter.js"></script>
+	<script src="js/meter.js"></script>
+	<script>
+		var rangeSlider = function(){
+  var slider = $('.range-slider'),
+      range = $('.range-slider__range'),
+      value = $('.range-slider__value');
+    
+  slider.each(function(){
+
+    value.each(function(){
+      var value = $(this).prev().attr('value');
+      $(this).html(value);
+    });
+
+    range.on('input', function(){
+      $(this).next(value).html(this.value);
+    });
+  });
+};
+
+rangeSlider();
+	</script>
 
 <!-- FOOTER-START -->
 <footer id="templatefooter"></footer>
