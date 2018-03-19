@@ -83,10 +83,28 @@ class Sheet:
         self.sheet = self.spread.open(self.sheet_name).worksheet(worksheet)
         return self.sheet
 
+    def get_sheet_rows(self, worksheet=None):
+        """ Return a list of each of the sheet's rows.
+            >>> sheet = Sheet('test-sheet', 'worksheet-name')
+            >>> sheet.get_sheet_rows()
+            >>> print(rows[0])
+
+            """
+        if not self.sheet or worksheet:
+            self.sheet = self.open_worksheet(worksheet)
+
+        if not worksheet:
+            worksheet = self.worksheet
+
+        rows = self.sheet.get_all_values()
+        return rows
+
     def publish(self, worksheet=None):
         """ Publish the data in whatever permutations we need.
             This assumes the spreadsheet's key names are in the first row.
+            This also assumes rows have already been set.
             >>> sheet = Sheet('test-sheet', 'worksheet-name')
+            >>> sheet.rows = sheet.get_sheet_rows()
             >>> sheet.publish()
             True
             """
@@ -97,15 +115,14 @@ class Sheet:
             worksheet = self.worksheet
 
         self.build_filename()
-
-        rows = self.sheet.get_all_values()
+        rows = self.rows
         keys = rows[0]
         fn = {
             'json': open('%s/output/%s.json' % (self.directory, self.filename), 'w'),
             'csv': open('%s/output/%s.csv' % (self.directory, self.filename), 'w')
         }
-        recordwriter = csv.DictWriter(
-            fn['csv'], keys, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+        recordwriter = csv.DictWriter( fn['csv'], keys, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         recordwriter.writeheader()
         records = []
         for i, row in enumerate(rows):

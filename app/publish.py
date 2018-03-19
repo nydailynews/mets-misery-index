@@ -34,7 +34,11 @@ def main(args):
         """
     sheet = Sheet('NYDN Sports', args.sheet)
     sheet.options = args
-    sheet.publish()
+    if 'misery' in args.sheet:
+        m = Misery(sheet)
+        m.publish
+    else:
+        sheet.publish()
 
 def build_parser(args):
     """ Handle the argparse and make it testable.
