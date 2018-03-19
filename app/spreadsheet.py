@@ -7,6 +7,7 @@ import argparse
 import csv
 from collections import OrderedDict
 import json
+import doctest
 
 class Sheet:
     """ The interface for querying Google Sheets.
@@ -99,6 +100,24 @@ class Sheet:
         rows = self.sheet.get_all_values()
         return rows
 
+    def filter_blanks_by_date(self, rows):
+        """ Given a list of lists, go through each list.
+            If only one field in that list is filled out, skip it.
+            Returns a new list of rows.
+            >>> sheet = Sheet('test-sheet', 'worksheet-name')
+            >>> sheet.rows = sheet.get_sheet_rows()
+            >>> sheet.rows = sheet.filter_blanks_by_date()
+            """
+        new_rows = []
+        for row in rows:
+            count = 0
+            for i in row:
+                if i != '':
+                    count += 1
+            if count > 1:
+                new_rows.append(row)
+        return new_rows
+
     def publish(self, worksheet=None):
         """ Publish the data in whatever permutations we need.
             This assumes the spreadsheet's key names are in the first row.
@@ -144,6 +163,8 @@ def main(args):
         """
     sheet = Sheet('NYDN Sports', 'mets-misery-2018')
     sheet.options = args
+    sheet.rows = sheet.get_sheet_rows()
+    sheet.rows = sheet.filter_blanks_by_date(sheet.rows)
     sheet.publish()
 
 if __name__ == '__main__':
