@@ -2,6 +2,15 @@
 
 // UTILS
 var utils = {
+    ap_numerals: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'],
+    months: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+    rando: function() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for ( var i=0; i < 8; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    },
     get_json: function(path, obj, callback) {
         // Downloads local json and returns it.
         // Cribbed from http://youmightnotneedjquery.com/
