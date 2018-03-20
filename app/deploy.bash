@@ -5,4 +5,4 @@ for SHEET in ${SHEETS[@]}; do
     python publish.py --sheet=$SHEET
 done
 
-scp output/* qa:/apps/project/misery-tracker/output/
+scp output/* qa:/apps/project/misery-index/output/
