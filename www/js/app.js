@@ -35,12 +35,6 @@ var utils = {
         var d = new Date(date_bits[0], +date_bits[1] - 1, date_bits[2], 0, 0, 0);
         return d.getTime();
     },
-    parse_html: function(str) {
-        // Cribbed from http://youmightnotneedjquery.com/#parse_html
-        var tmp = document.implementation.createHTMLDocument();
-        tmp.body.innerHTML = str;
-        return tmp.body.children;
-    },
     get_json: function(path, obj, callback) {
         // Downloads local json and returns it.
         // Cribbed from http://youmightnotneedjquery.com/
@@ -62,7 +56,8 @@ var utils = {
     },
     add_js: function(src, callback) {
         var s = document.createElement('script');
-        s.onload = function() { callback(); }
+        if ( typeof callback === 'function' ) s.onload = function() { callback(); }
+        //else console.log("Callback function", callback, " is not a function");
         s.setAttribute('src', src);
         document.getElementsByTagName('head')[0].appendChild(s);
     },
@@ -119,15 +114,28 @@ var misery = {
             }
         }
     },
-    build_recent_misery: function() {
+    d: {},
+    build_recent: function() {
+        // Populate the recent misery list, add the functionality for viewing the rest of it.
+        var l = misery.d.recent.length;
+        for ( var i = 0; i < l; i ++ ) {
+        }
     },
-    build_daily_misery: function() {
+    build_daily: function() {
         // Build out the daily misery chart
     },
-    on_load: function() {
+    on_load_recent: function() {
+        // Process the recent misery
+        console.log(misery.data);
+        misery.d.recent = data;
+        misery.build_recent(misery.d.recent);
+    },
+    on_load_daily: function() {
+        // Process the daily misery scores
+        misery.d.daily = data;
     },
     init: function() {
-        utils.get_json('output/mets-misery-2018.json', misery, this.on_load);
+        utils.get_json('output/mets-misery-2018.json', misery, this.on_load_recent);
     }
 }
 misery.init();
@@ -147,7 +155,7 @@ var injuries = {
             }
         }
     },
-    populate_table: function(data) {
+    build_table: function(data) {
         // Take records in the data array and add them to a table.
         var l = data.length;
         var t = document.getElementById('injury');
@@ -170,7 +178,7 @@ var injuries = {
         }
     },
     on_load: function() {
-        injuries.populate_table(injuries.data);
+        injuries.build_table(injuries.data);
     },
     init: function() {
         utils.get_json('output/mets-injured-list-2018.json', injuries, this.on_load);
