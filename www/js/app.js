@@ -127,7 +127,7 @@ var misery = {
     on_load_recent: function() {
         // Process the recent misery
         console.log(misery.data);
-        misery.d.recent = data;
+        misery.d.recent = misery.data;
         misery.build_recent(misery.d.recent);
     },
     on_load_daily: function() {
