@@ -6,11 +6,11 @@ var utils = {
     months: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
     ap_months: ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'],
     ap_date: function(date) {
-        // Given a date such as "2018-02-03" return an AP style date, sans year.
+        // Given a date such as "2018-02-03" return an AP style date.
         var parts = date.split('-')
         var day = +parts[2];
         var month = this.ap_months[+parts[1] - 1];
-        return month + ' ' + day;
+        return month + ' ' + day + ', ' + parts[0];
     },
     rando: function() {
         var text = "";
@@ -34,6 +34,12 @@ var utils = {
         // We do that "+date_bits[1] - 1" because months are zero-indexed.
         var d = new Date(date_bits[0], +date_bits[1] - 1, date_bits[2], 0, 0, 0);
         return d.getTime();
+    },
+    parse_html: function(str) {
+        // Cribbed from http://youmightnotneedjquery.com/#parse_html
+        var tmp = document.implementation.createHTMLDocument();
+        tmp.body.innerHTML = str;
+        return tmp.body.children;
     },
     get_json: function(path, obj, callback) {
         // Downloads local json and returns it.
@@ -93,7 +99,7 @@ var commentary = {
         else commentary.load_tweet(latest);
     },
     init: function() {
-        this.data = utils.get_json('output/mets-commentary-2018.json', commentary, this.on_load);
+        utils.get_json('output/mets-commentary-2018.json', commentary, this.on_load);
     }
 }
 commentary.init();
@@ -141,10 +147,33 @@ var injuries = {
             }
         }
     },
+    populate_table: function(data) {
+        // Take records in the data array and add them to a table.
+        var l = data.length;
+        var t = document.getElementById('injury');
+        for ( var i = 0; i < l; i ++ ) {
+            // Put together the text and the markup we need to populate a table row.
+            var injury = data[i]['injury'];
+            if ( data[i]['url'] !== '' ) injury = '<a href="' + data[i]['url'].trim() + '">' + data[i]['injury'] + '</a>';
+            var start_date = utils.ap_date(data[i]['dl-start-date']);
+
+            var tr = document.createElement('tr');
+            var markup = '\n\
+						<td>' + data[i]['player-name'] + '</td>\n\
+						<td>' + data[i]['player-position'] + '</td>\n\
+						<td>' + injury + '</td>\n\
+						<td>' + data[i]['dl-status'] + '</td>\n\
+						<td>' + start_date + '</td>\n\
+                        ';
+            tr.innerHTML = markup;
+            t.appendChild(tr);
+        }
+    },
     on_load: function() {
+        injuries.populate_table(injuries.data);
     },
     init: function() {
-        this.data = utils.get_json('../output/mets-injuries-2018.json', injuries, this.on_load);
+        utils.get_json('output/mets-injured-list-2018.json', injuries, this.on_load);
     }
 }
-
+injuries.init();
