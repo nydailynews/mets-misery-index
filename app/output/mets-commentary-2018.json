@@ -1,14 +1,1 @@
-[
-  {
-    "date": "2018-02-27",
-    "twitter-url": "https://twitter.com/KennyDucey/status/968564828674588672",
-    "quote": "",
-    "source": ""
-  },
-  {
-    "date": "2018-02-27",
-    "twitter-url": "https://twitter.com/cara_jeffrey/status/968615586153590784",
-    "quote": "",
-    "source": ""
-  }
-]
+[{"date": "2018-02-27", "twitter-url": "https://twitter.com/KennyDucey/status/968564828674588672", "quote": "", "source": "", "": "", "notes: either fill out the twitter-url or the quote&source fields, but not both": ""}, {"date": "2018-02-27", "twitter-url": "https://twitter.com/cara_jeffrey/status/968615586153590784", "quote": "", "source": "", "": "", "notes: either fill out the twitter-url or the quote&source fields, but not both": ""}]
