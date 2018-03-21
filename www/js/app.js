@@ -118,7 +118,14 @@ var misery = {
     build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
         var l = misery.d.recent.length;
+        var ul = document.getElementById('recent');
         for ( var i = 0; i < l; i ++ ) {
+            var li = document.createElement('li');
+            var item = misery.d.recent[i]['event'];
+            if ( misery.d.recent[i]['url'] !== '' ) item = '<a href="' + misery.d.recent[i]['url'] + '">' + misery.d.recent[i]['event'] + '</a>';
+
+            li.innerHTML = item;
+            ul.appendChild(li);
         }
     },
     build_daily: function() {
