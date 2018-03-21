@@ -93,8 +93,9 @@ var commentary = {
         if ( latest['twitter-url'] == '' ) commentary.load_quote(latest);
         else commentary.load_tweet(latest);
     },
-    init: function() {
-        utils.get_json('output/mets-commentary-2018.json', commentary, this.on_load);
+    init: function(year) {
+        if ( year == null ) year = 2018;
+        utils.get_json('output/mets-commentary-' + year + '.json', commentary, this.on_load);
     }
 }
 commentary.init();
@@ -141,8 +142,9 @@ var misery = {
         // Process the daily misery scores
         misery.d.daily = data;
     },
-    init: function() {
-        utils.get_json('output/mets-misery-2018.json', misery, this.on_load_recent);
+    init: function(year) {
+        if ( year == null ) year = 2018;
+        utils.get_json('output/mets-misery-' + year + '.json', misery, this.on_load_recent);
     }
 }
 misery.init();
@@ -187,8 +189,9 @@ var injuries = {
     on_load: function() {
         injuries.build_table(injuries.data);
     },
-    init: function() {
-        utils.get_json('output/mets-injured-list-2018.json', injuries, this.on_load);
+    init: function(year) {
+        if ( year == null ) year = 2018;
+        utils.get_json('output/mets-injured-list-' + year + '.json', injuries, this.on_load);
     }
 }
 injuries.init();
