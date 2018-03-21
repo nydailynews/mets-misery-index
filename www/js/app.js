@@ -77,24 +77,39 @@ var commentary = {
                 this.config[key] = config[key];
             }
         }
+        return true;
     },
     load_quote: function(record) {
         // Given a quote and a source, populate the color commentary with the quote.
+        var bq = document.getElementById('tweet-link');
+        var p = document.createElement('p');
+        var q = document.createElement('q');
+        q.textContent = record['quote'];
+        var s = document.createElement('span');
+        s.textContent = record['source'];
+
+        p.appendChild(q);
+        p.appendChild(s);
+        bq.appendChild(p);
+        return true;
     },
     load_tweet: function(record) {
         // Given a tweet url, populate the color commentary section and load the twitter javascript.
         console.log(this);
         document.getElementById('tweet-link').setAttribute('href', record['twitter-url']);
         utils.add_js('https://platform.twitter.com/widgets.js', {});
+        return true;
     },
     on_load: function() {
         // The latest item in this.data is the one we put on the page.
         var latest = commentary.data.pop();
         if ( latest['twitter-url'] == '' ) commentary.load_quote(latest);
         else commentary.load_tweet(latest);
+        return true;
     },
     init: function(year) {
         if ( year == null ) year = 2018;
+        // get_json takes three params: filepath, the object that's calling it, and a callback.
         utils.get_json('output/mets-commentary-' + year + '.json', commentary, this.on_load);
     }
 }
@@ -144,6 +159,7 @@ var misery = {
     },
     init: function(year) {
         if ( year == null ) year = 2018;
+        // get_json takes three params: filepath, the object that's calling it, and a callback.
         utils.get_json('output/mets-misery-' + year + '.json', misery, this.on_load_recent);
     }
 }
@@ -191,6 +207,7 @@ var injuries = {
     },
     init: function(year) {
         if ( year == null ) year = 2018;
+        // get_json takes three params: filepath, the object that's calling it, and a callback.
         utils.get_json('output/mets-injured-list-' + year + '.json', injuries, this.on_load);
     }
 }
