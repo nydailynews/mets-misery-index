@@ -174,7 +174,7 @@ tr:nth-child(even) {
 
 .range-slider__range {
 	-webkit-appearance: none;
-	width: calc(100% - (38px));
+	width: calc(100% - (60px));
 	height: 10px;
 	border-radius: 5px;
 	background: #dedede;
@@ -225,7 +225,7 @@ tr:nth-child(even) {
 	border-radius: 3px;
 	background: #002D72;
 	padding: 5px 10px;
-	margin-left: 8px;
+	margin-left: 15px;
 }
 .range-slider__value:after {
 	position: absolute;
@@ -248,6 +248,21 @@ input::-moz-focus-inner,
 input::-moz-focus-outer {
 	border: 0;
 }
+
+#tickmarks, #tick-number {
+	width: calc(100% - (60px));
+	display: flex;
+	justify-content: space-between;
+}
+
+.ticks {
+	background: black;
+	width: 1px;
+	height: 10px;
+	position: relative;
+	top: -19px;
+}
+  
 
 /*--------- SLIDER END ---------*/
 
