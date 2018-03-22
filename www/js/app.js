@@ -54,6 +54,12 @@ var utils = {
         request.onerror = function() {};
         request.send();
     },
+    add_class: function(el, class_name) {
+        // From http://youmightnotneedjquery.com/#add_class
+        if ( el.classlist ) el.classList.add(class_name);
+        else el.className += ' ' + class_name;
+        return el;
+    },
     add_js: function(src, callback) {
         var s = document.createElement('script');
         if ( typeof callback === 'function' ) s.onload = function() { callback(); }
@@ -137,6 +143,13 @@ var misery = {
         var ul = document.getElementById('recent');
         for ( var i = 0; i < l; i ++ ) {
             var li = document.createElement('li');
+            if ( i >= 5 ) li = utils.add_class(li, 'view-more hide');
+            if ( i == 5 ) {
+                var more = document.createElement('li');
+                more = utils.add_class(more, 'view-more-link');
+                more.innerHTML = '<a href="javascript:utils.view_more(); return false;">View more</a>';
+                ul.appendChild(more);
+            }
             var item = misery.d.recent[i]['event'];
             if ( misery.d.recent[i]['url'] !== '' ) item = '<a href="' + misery.d.recent[i]['url'] + '">' + misery.d.recent[i]['event'] + '</a>';
 
