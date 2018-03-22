@@ -32,11 +32,31 @@ class Misery:
         self.sheet = sheet
 
     def build_score_list(self):
-        """ Build a per-day list of misery scores, ala
+        """ Build a per-day list of misery scores, ala / cribbed liberally from https://github.com/denverpost/misery-index/blob/master/misery.py#L164
+            We take a 
+            A row is expected to look like
+            ['2018-03-29', 'Mets start season with five players on the DL', '3', '']
+            and gets turned into a dict that looks like
+            {'date': '2018-04-09', 'event': 'Testy test testalot', 'misery-score': '1', 'url': ''}
+
+            To do this we build a list of dates between today and the first day of the season.
+            Then we loop through those dates and add any misery scores to them.
+            Then we loop through those dates again and prolong the misery.
             """
         new_rows = []
-        for row in self.sheet.rows:
-            print(row)
+        events = OrderedDict()
+        dates = OrderedDict()
+        today = date.today()
+        print(today)
+        
+        for i, row in enumerate(self.sheet.rows):
+            if i == 0:
+                keys = row
+                continue
+            r = dict(zip(keys, row))
+            if r['event'] == '':
+                continue
+            print(r)
 
     def publish(self):
         """ Build the modified misery list.
