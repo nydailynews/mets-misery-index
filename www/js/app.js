@@ -147,7 +147,7 @@ var misery = {
             if ( i == 5 ) {
                 var more = document.createElement('li');
                 more = utils.add_class(more, 'view-more-link');
-                more.innerHTML = '<a href="javascript:utils.view_more(); return false;">View more</a>';
+                more.innerHTML = '<a href="javascript:misery.view_more();">View more</a>';
                 ul.appendChild(more);
             }
             var item = misery.d.recent[i]['event'];
@@ -156,6 +156,11 @@ var misery = {
             li.innerHTML = item;
             ul.appendChild(li);
         }
+    },
+    view_more: function() {
+        // Turn off the hide
+        $('.view-more').removeClass('hide');
+        $('.view-more-link').addClass('hide');
     },
     build_daily: function() {
         // Build out the daily misery chart
@@ -174,6 +179,7 @@ var misery = {
         if ( year == null ) year = 2018;
         // get_json takes three params: filepath, the object that's calling it, and a callback.
         utils.get_json('output/mets-misery-' + year + '.json', misery, this.on_load_recent);
+        utils.get_json('output/mets-misery-daily-' + year + '.json', misery, this.on_load_daily);
     }
 }
 misery.init();

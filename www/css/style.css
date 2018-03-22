@@ -199,6 +199,17 @@ tr:nth-child(even) {
 	margin-top: 30px;
 }
 
+/*--------- RECENT MISERY ---------*/
+.view-more-link:before {
+    content: "» ";
+}
+.view-more-link {
+    list-style-type: none;
+    text-align: right;
+}
+.hide {
+    display: none;
+}
 /*--------- FAN SLIDER ---------*/
 
 .range-slider {
