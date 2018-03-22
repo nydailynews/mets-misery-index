@@ -164,6 +164,25 @@ var misery = {
     },
     build_daily: function() {
         // Build out the daily misery chart
+		
+        var margin = { top: 20, right: 20, bottom: 30, left: 30 };
+		var width = 800 - margin.left - margin.right;
+		var height = 200 - margin.top - margin.bottom;
+		//if ( width < 350 ) width = 330;
+
+		var x = d3.scaleBand().range([5, width], .5);
+		var y = d3.scaleLinear().range([height, 0]);
+
+		var x_axis = d3.axisBottom(x);
+		var y_axis = d3.axisLeft(y)
+			.ticks(6);
+
+		var chart = d3.select('#daily-misery')
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+			.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
     },
     on_load_recent: function() {
         // Process the recent misery
@@ -173,7 +192,9 @@ var misery = {
     },
     on_load_daily: function() {
         // Process the daily misery scores
-        misery.d.daily = data;
+        console.log(misery.data);
+        misery.d.daily = misery.data;
+		misery.build_daily();
     },
     init: function(year) {
         if ( year == null ) year = 2018;
