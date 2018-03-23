@@ -184,7 +184,7 @@ var misery = {
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        x.domain(season_dates.map(function(d) { return misery.parse_time(d) }));
+        x.domain(season_dates.map(function(d) { return misery.format_time(misery.parse_time(d)) }));
         //y.domain([0, d3.max(misery.d.recent, function(d) { return +d['misery-score']; })]);
         y.domain([0, 10]);
 		chart.append("g")
@@ -208,10 +208,10 @@ var misery = {
 			.text('Misery');
 
 		chart.selectAll("bar")
-			.data(misery.d.recent)
+			.data(misery.d.daily)
 			.enter().append("rect")
 			.attr("class", "bar")
-			.attr("x", function(d) { return x(misery.parse_time(d['date'])); })
+			.attr("x", function(d) { return x(misery.format_time(misery.parse_time(d['date']))); })
 			.attr("width", x.bandwidth())
 			.attr("y", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return y(+d['misery-score']); })
 			.attr("height", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return misery.c.height - y(+d['misery-score']); });
