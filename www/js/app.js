@@ -162,26 +162,59 @@ var misery = {
         $('.view-more').removeClass('hide');
         $('.view-more-link').addClass('hide');
     },
+	c: {},
     build_daily: function() {
         // Build out the daily misery chart
 		
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
-		var width = 800 - margin.left - margin.right;
-		var height = 200 - margin.top - margin.bottom;
+		this.c.width = 800 - margin.left - margin.right;
+		this.c.height = 200 - margin.top - margin.bottom;
 		//if ( width < 350 ) width = 330;
 
-		var x = d3.scaleBand().range([5, width], .5);
-		var y = d3.scaleLinear().range([height, 0]);
+		var x = d3.scaleBand().range([5, this.c.width], .5);
+		var y = d3.scaleLinear().range([this.c.height, 0]);
 
 		var x_axis = d3.axisBottom(x);
 		var y_axis = d3.axisLeft(y)
 			.ticks(6);
 
 		var chart = d3.select('#daily-misery')
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
+			.attr("width", this.c.width + margin.left + margin.right)
+			.attr("height", this.c.height + margin.top + margin.bottom)
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        x.domain(season_dates.map(function(d) { return misery.parse_time(d) }));
+        //y.domain([0, d3.max(misery.d.recent, function(d) { return +d['misery-score']; })]);
+        y.domain([0, 10]);
+		chart.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + this.c.height + ")")
+			.call(x_axis)
+			.append("text")
+			.attr("x", 10)
+			.attr("dy", "2.5em")
+			.style("text-anchor", "start")
+			.text('Date');
+
+		chart.append("g")
+			.attr("class", "y axis")
+			.call(y_axis)
+			.append("text")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 6)
+			.attr("dy", ".71em")
+			.style("text-anchor", "end")
+			.text('Misery');
+
+		chart.selectAll("bar")
+			.data(misery.d.recent)
+			.enter().append("rect")
+			.attr("class", "bar")
+			.attr("x", function(d) { return x(misery.parse_time(d['date'])); })
+			.attr("width", x.bandwidth())
+			.attr("y", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return y(+d['misery-score']); })
+			.attr("height", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return misery.c.height - y(+d['misery-score']); });
 
     },
     on_load_recent: function() {
@@ -193,6 +226,8 @@ var misery = {
     on_load_daily: function() {
         // Process the daily misery scores
         console.log(misery.data);
+		misery.parse_time = d3.timeParse('%Y-%m-%d');
+		misery.format_time = d3.timeFormat('%B %e');
         misery.d.daily = misery.data;
 		misery.build_daily();
     },
@@ -252,3 +287,5 @@ var injuries = {
     }
 }
 injuries.init();
+
+var season_dates = ['2018-03-29', '2018-03-30', '2018-03-31', '2018-04-01', '2018-04-02', '2018-04-03', '2018-04-04', '2018-04-05', '2018-04-06', '2018-04-07', '2018-04-08', '2018-04-09', '2018-04-10', '2018-04-11', '2018-04-12', '2018-04-13', '2018-04-14', '2018-04-15', '2018-04-16', '2018-04-17', '2018-04-18', '2018-04-19', '2018-04-20', '2018-04-21', '2018-04-22', '2018-04-23', '2018-04-24', '2018-04-25', '2018-04-26', '2018-04-27', '2018-04-28', '2018-04-29', '2018-04-30', '2018-05-01', '2018-05-02', '2018-05-03', '2018-05-04', '2018-05-05', '2018-05-06', '2018-05-07', '2018-05-08', '2018-05-09', '2018-05-10', '2018-05-11', '2018-05-12', '2018-05-13', '2018-05-14', '2018-05-15', '2018-05-16', '2018-05-17', '2018-05-18', '2018-05-19', '2018-05-20', '2018-05-21', '2018-05-22', '2018-05-23', '2018-05-24', '2018-05-25', '2018-05-26', '2018-05-27', '2018-05-28', '2018-05-29', '2018-05-30', '2018-05-31', '2018-06-01', '2018-06-02', '2018-06-03', '2018-06-04', '2018-06-05', '2018-06-06', '2018-06-07', '2018-06-08', '2018-06-09', '2018-06-10', '2018-06-11', '2018-06-12', '2018-06-13', '2018-06-14', '2018-06-15', '2018-06-16', '2018-06-17', '2018-06-18', '2018-06-19', '2018-06-20', '2018-06-21', '2018-06-22', '2018-06-23', '2018-06-24', '2018-06-25', '2018-06-26', '2018-06-27', '2018-06-28', '2018-06-29', '2018-06-30', '2018-07-01', '2018-07-02', '2018-07-03', '2018-07-04', '2018-07-05', '2018-07-06', '2018-07-07', '2018-07-08', '2018-07-09', '2018-07-10', '2018-07-11', '2018-07-12', '2018-07-13', '2018-07-14', '2018-07-15', '2018-07-16', '2018-07-17', '2018-07-18', '2018-07-19', '2018-07-20', '2018-07-21', '2018-07-22', '2018-07-23', '2018-07-24', '2018-07-25', '2018-07-26', '2018-07-27', '2018-07-28', '2018-07-29', '2018-07-30', '2018-07-31', '2018-08-01', '2018-08-02', '2018-08-03', '2018-08-04', '2018-08-05', '2018-08-06', '2018-08-07', '2018-08-08', '2018-08-09', '2018-08-10', '2018-08-11', '2018-08-12', '2018-08-13', '2018-08-14', '2018-08-15', '2018-08-16', '2018-08-17', '2018-08-18', '2018-08-19', '2018-08-20', '2018-08-21', '2018-08-22', '2018-08-23', '2018-08-24', '2018-08-25', '2018-08-26', '2018-08-27', '2018-08-28', '2018-08-29', '2018-08-30', '2018-08-31', '2018-09-01', '2018-09-02', '2018-09-03', '2018-09-04', '2018-09-05', '2018-09-06', '2018-09-07', '2018-09-08', '2018-09-09', '2018-09-10', '2018-09-11', '2018-09-12', '2018-09-13', '2018-09-14', '2018-09-15', '2018-09-16', '2018-09-17', '2018-09-18', '2018-09-19', '2018-09-20', '2018-09-21', '2018-09-22', '2018-09-23', '2018-09-24', '2018-09-25', '2018-09-26', '2018-09-27', '2018-09-28', '2018-09-29', '2018-09-30'];

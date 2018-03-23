@@ -180,6 +180,20 @@
 				</ul>
 			</section>
 			
+    <style>
+        /* Only show certain tick marks on the charts */
+        #daily-misery g.x g.tick { display: none; }
+        @media only screen and (min-width:750px) {
+            #daily-misery g.x g.tick:nth-child(20n+2) { display: block; }
+        }
+        @media only screen and (max-width:750px) {
+            #daily-misery g.x g.tick:nth-child(30n+2) { display: block; }
+        }
+        @media only screen and (max-width:450px) {
+            #daily-misery g.x g.tick:nth-child(30n+2) { display: none; }
+            #daily-misery g.x g.tick:nth-child(35n+2) { display: block; }
+        }
+	</style>
 			<section class="daily-chart">
 				<h2>Mets misery day by day</h2>
 				<img src="img/test-chart.jpg" alt="chart placeholder">
