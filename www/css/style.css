@@ -134,7 +134,7 @@ blockquote a {
 	color: #000;
 }
 
-.injuries {
+#injury-tracker {
 	grid-column: 2 / 4;
 	grid-row: 3;
 	margin-top: 50px;
@@ -163,6 +163,13 @@ td {
 
 tr:nth-child(even) {
 		background-color: #dedede;
+}
+
+tr.inactive {
+    background-color: #eee;
+}
+tr.inactive td {
+    color: #aaa;
 }
 
 .fan-misery p {

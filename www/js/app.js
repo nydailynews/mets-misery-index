@@ -265,12 +265,16 @@ var injuries = {
             if ( data[i]['url'] !== '' ) injury = '<a href="' + data[i]['url'].trim() + '">' + data[i]['injury'] + '</a>';
             var start_date = utils.ap_date(data[i]['dl-start-date']);
 
+			var dl_status = data[i]['dl-status'];
+			if ( dl_status.trim().toLowerCase() == 'shruggie' ) dl_status = '¯\\_(ツ)_/¯';
+
             var tr = document.createElement('tr');
+			if ( dl_status.trim() === '' ) tr.setAttribute('class', 'inactive');
             var markup = '\n\
 						<td>' + data[i]['player-name'] + '</td>\n\
 						<td>' + data[i]['player-position'] + '</td>\n\
 						<td>' + injury + '</td>\n\
-						<td>' + data[i]['dl-status'] + '</td>\n\
+						<td>' + dl_status + '</td>\n\
 						<td>' + start_date + '</td>\n\
                         ';
             tr.innerHTML = markup;
