@@ -193,7 +193,7 @@ tr:nth-child(even) {
 	margin-top: 30px;
 }
 
-.daily-chart {
+#daily-chart {
 	grid-column: 1 / 4;
 	grid-row: 5;
 	margin-top: 30px;
