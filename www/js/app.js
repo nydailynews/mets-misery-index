@@ -167,7 +167,7 @@ var misery = {
         // Build out the daily misery chart
 		
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
-		this.c.width = 800 - margin.left - margin.right;
+		this.c.width = 1000 - margin.left - margin.right;
 		this.c.height = 200 - margin.top - margin.bottom;
 		//if ( width < 350 ) width = 330;
 

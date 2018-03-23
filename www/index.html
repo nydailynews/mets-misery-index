@@ -182,6 +182,27 @@
 			</section>
 			
     <style>
+		.axis text {
+		  text-transform: capitalize; 
+		  font: 10px sans-serif;
+		  color: #666;
+		}
+
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+		rect {
+			fill: #002D72;
+		}
+
+		/*
+		.x.axis path {
+		  display: none;
+		}
+		*/
         /* Only show certain tick marks on the charts */
         #daily-misery g.x g.tick { display: none; }
         @media only screen and (min-width:750px) {
@@ -196,11 +217,11 @@
         }
 	</style>
 			<section class="daily-chart">
-				<h2>Mets misery day by day</h2>
-				<img src="img/test-chart.jpg" alt="chart placeholder">
+				<h2>Mets misery, day by day</h2>
 				<figure>
 					<svg id="daily-misery"></svg>
 					<figcaption></figcaption>
+					<table></table>
 				</figure>
 			</section>
 		</div>
