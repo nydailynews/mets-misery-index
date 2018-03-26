@@ -55,15 +55,13 @@ class Misery:
             2. Build a list of dates from the first day of the season until the latest day we have activity for or today, whichever is later.
             3. Then we loop through those dates and add any misery scores to them.
             4. Then we loop through those dates again and prolong the misery.
+            5. Then we go through the keys in the OrderedDict and turn the records into rows.
             """
         new_rows = []
+        records = []
         first_day = date.today()
         last_day = date.today()
-        events = OrderedDict()
-        dates = OrderedDict()
         scores = OrderedDict()
-        today = date.today()
-        print(today)
         
         # 1. Build a list of dicts we can use for our score calculations.
         for i, row in enumerate(self.sheet.rows):
@@ -104,9 +102,12 @@ class Misery:
                     if item['misery-score'] == '':
                         continue
                     scores[d_str]['misery-score'] += int(item['misery-score'])
+
+            # 5. Take the final misery score for this day and put it in a dict that's added to the records list.
+            records.append({'date': d_str, 'misery-score': scores[d_str]['misery-score']})
             d += timedelta(1)
         #print(json.dumps(scores))
-        return scores
+        return records
 
     def publish(self):
         """ Build the modified misery list.
