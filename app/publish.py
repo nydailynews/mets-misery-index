@@ -31,6 +31,16 @@ class Misery:
     def __init__(self, sheet):
         self.sheet = sheet
 
+    def date_obj_to_str(self, date_obj):
+        """ Turn a date object into a string formatted like '2018-02-03'
+            """
+        return date_obj.__str__()
+
+    def date_str_to_obj(self, date_str):
+        """ Turn a '2018-02-03' string into a date object.
+            """
+        return datetime.strptime(date_str, '%Y-%m-%d').date()
+
     def build_score_list(self):
         """ Build a per-day list of misery scores, ala / cribbed liberally from https://github.com/denverpost/misery-index/blob/master/misery.py#L164
             We take a 
@@ -39,16 +49,22 @@ class Misery:
             and gets turned into a dict that looks like
             {'date': '2018-04-09', 'event': 'Testy test testalot', 'misery-score': '1', 'url': ''}
 
-            To do this we build a list of dates between today and the first day of the season.
-            Then we loop through those dates and add any misery scores to them.
-            Then we loop through those dates again and prolong the misery.
+            To do this we:
+            1. Build a list of dicts we can use for our score calculations.
+            2. Build a list of dates from the first day of the season until the latest day we have activity for or today, whichever is later.
+            3. Then we loop through those dates and add any misery scores to them.
+            4. Then we loop through those dates again and prolong the misery.
             """
         new_rows = []
+        first_day = date.today()
+        last_day = date.today()
         events = OrderedDict()
         dates = OrderedDict()
+        scores = OrderedDict()
         today = date.today()
         print(today)
         
+        # 1. Build a list of dicts we can use for our score calculations.
         for i, row in enumerate(self.sheet.rows):
             if i == 0:
                 keys = row
@@ -56,7 +72,39 @@ class Misery:
             r = dict(zip(keys, row))
             if r['event'] == '':
                 continue
+            new_rows.append(r)
+            d = self.date_str_to_obj(r['date'])
+            if d < first_day:
+                first_day = d
+            if d > last_day:
+                last_day = d
             print(r)
+
+        # 2. Build a list of dates from the first day of the season until the latest day we have activity for or today, whichever is later.
+        d = first_day
+        while d < last_day:
+            d_str = d.__str__()
+            if d_str not in scores:
+                # 4. Then we loop through those dates again and prolong the misery.
+                # Check the previous day for any misery we should account for,
+                # otherwise assign today's value a starting score of zero.
+                yesterday = d - timedelta(1)
+                if yesterday.__str__() in scores:
+                    yesterdays_score = scores[yesterday.__str__()]['misery-score']
+                    residual_misery = math.floor(yesterdays_score/float(2.1))
+                    scores[d_str] = { 'misery-score': residual_misery }
+                else:
+                    scores[d_str] = { 'misery-score': 0 }
+
+            # 3. Then we loop through those dates and add any misery scores to them.
+            for item in new_rows:
+                if item['date'] == d_str:
+                    if item['misery-score'] == '':
+                        continue
+                    scores[d_str]['misery-score'] += int(item['misery-score'])
+            d += timedelta(1)
+        print(scores) 
+        print(first_day)
 
     def publish(self):
         """ Build the modified misery list.
