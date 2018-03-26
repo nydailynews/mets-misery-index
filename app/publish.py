@@ -5,6 +5,7 @@ import argparse
 from datetime import date, datetime, timedelta
 import time
 import math
+import json
 from spreadsheet import Sheet
 from collections import defaultdict, OrderedDict
 
@@ -91,7 +92,8 @@ class Misery:
                 yesterday = d - timedelta(1)
                 if yesterday.__str__() in scores:
                     yesterdays_score = scores[yesterday.__str__()]['misery-score']
-                    residual_misery = math.floor(yesterdays_score/float(2.1))
+                    # We divide the previous day's misery score by 2 and round down to get the residual misery.
+                    residual_misery = math.floor(yesterdays_score/float(2))
                     scores[d_str] = { 'misery-score': residual_misery }
                 else:
                     scores[d_str] = { 'misery-score': 0 }
@@ -103,14 +105,15 @@ class Misery:
                         continue
                     scores[d_str]['misery-score'] += int(item['misery-score'])
             d += timedelta(1)
-        print(scores) 
-        print(first_day)
+        #print(json.dumps(scores))
+        return scores
 
     def publish(self):
         """ Build the modified misery list.
             """
         self.sheet.rows = self.build_score_list()
-        self.sheet.publish()
+        self.sheet.filename = 'mets-misery-daily-2018' #***HC
+        self.sheet.publish_json_only()
         return True
 
 def main(args):

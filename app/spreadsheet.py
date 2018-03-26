@@ -149,11 +149,20 @@ class Sheet:
                 continue
             record = OrderedDict(zip(keys, row))
             recordwriter.writerow(record)
-            records += [record]
+            records.append(record)
 
         if records:
             json.dump(records, fn['json'])
 
+        return True
+
+    def publish_json_only(self):
+        """ Assumes self.filename's already set.
+            """
+        fn = {
+            'json': open('%s/output/%s.json' % (self.directory, self.filename), 'w'),
+        }
+        json.dump(self.rows, fn['json'])
         return True
         
 def main(args):
