@@ -185,7 +185,7 @@ tr.inactive td {
     color: #aaa;
 }
 
-.fan-misery p {
+#fan-misery p {
 	font: normal 14px 'Open Sans', sans-serif;
 	line-height: 19px;
 	text-align: left;
@@ -240,7 +240,7 @@ button {
 
 /* ===== RADIO BUTTONS END ===== */
 
-.recent-news ul {
+#recent-news ul {
 	margin-left: 28px;
 	margin-bottom: 20px;
 	width: 450px;
@@ -249,13 +249,13 @@ button {
 	text-align: left;
 }
 
-.fan-misery {
+#fan-misery {
 	grid-column: 1 / 2;
 	grid-row: 5;
 	margin-top: 30px;
 }
 
-.recent-news {
+#recent-news {
 	grid-column: 2 / 4;
 	grid-row: 5;
 	margin-top: 30px;
