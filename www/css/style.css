@@ -233,8 +233,9 @@ input[type="radio"]:focus + span {
 }
 
 button {
-	margin-top: 20px;
-	font: bold 15px 'Open Sans Condensed', sans-serif;
+	margin: 20px;
+	padding: 5px;
+	font: normal 12px 'Open Sans', sans-serif;
 }
 
 /* ===== RADIO BUTTONS END ===== */
