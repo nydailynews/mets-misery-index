@@ -1,4 +1,4 @@
-h1, h2, h3, h4, h5, button {
+h1, h2, h3, h4, h5 {
 	font-family: 'Open Sans Condensed', sans-serif;
 	color: #333;
 	text-rendering: optimizeLegibility;
@@ -21,8 +21,8 @@ h2 {
 
 p.description {
 	font-family: 'PT Serif', serif;
-	font-size: 17px;
-	line-height: 19px;
+	font-size: 20px;
+	line-height: 25px;
 }
 
 p.byline {
@@ -39,6 +39,8 @@ p.byline {
 }
 
 .ad {
+	grid-column: 1 / 4;
+	grid-row: 3;
 	margin: 10px auto;
 }
 
@@ -82,6 +84,16 @@ article {
 	margin-bottom: 45px;
 }
 
+#image-banner {
+	position: relative;
+	top: 15%;
+	border: 50px solid #002D72;
+	border-left: 0;
+	border-right: 30px solid transparent;
+	width: 300px;
+	box-shadow: 0 8px 6px -6px black;
+}
+
 .meter-explainer {
 	grid-column: 1 / 3;
 	grid-row: 2;
@@ -96,6 +108,7 @@ article {
 	grid-row: 2;
 	align-self: end;
 	background: #FC4C02;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 #meter-number {
@@ -105,7 +118,7 @@ article {
 
 .commentary {
 	grid-column: 1 / 2;
-	grid-row: 3;
+	grid-row: 4;
 /*	margin-top: 0px;
 	margin-bottom: 0px;*/
 	width: 460px;
@@ -136,7 +149,7 @@ blockquote a {
 
 #injury-tracker {
 	grid-column: 2 / 4;
-	grid-row: 3;
+	grid-row: 4;
 	margin-top: 50px;
 }
 
@@ -179,6 +192,53 @@ tr.inactive td {
 	margin-bottom: 20px;
 }
 
+/* ===== RADIO BUTTONS ===== */
+
+#radios {
+	text-align: center;
+	margin: 0 auto;
+	display: flex;
+}
+
+#radios label {
+	cursor: pointer;
+	position: relative;
+}
+
+#radios label + label {
+	margin-left: 15px;
+}
+
+input[type="radio"] {
+	opacity: 0; /* hidden but still tabable */
+	position: absolute;
+}
+
+input[type="radio"] + span {
+	font-size: 15px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #002D72;
+	color: #FFFFFF;
+	border-radius: 50%;
+	padding: 3px 8px;
+}
+
+input[type="radio"]:checked + span {
+	color: #FFFFFF;
+	background-color: #FC4C02;
+}
+
+input[type="radio"]:focus + span {
+	color: #FFFFFF;
+}
+
+button {
+	margin-top: 20px;
+	font: bold 15px 'Open Sans Condensed', sans-serif;
+}
+
+/* ===== RADIO BUTTONS END ===== */
+
 .recent-news ul {
 	margin-left: 28px;
 	margin-bottom: 20px;
@@ -190,19 +250,19 @@ tr.inactive td {
 
 .fan-misery {
 	grid-column: 1 / 2;
-	grid-row: 4;
+	grid-row: 5;
 	margin-top: 30px;
 }
 
 .recent-news {
 	grid-column: 2 / 4;
-	grid-row: 4;
+	grid-row: 5;
 	margin-top: 30px;
 }
 
 #daily-chart {
 	grid-column: 1 / 4;
-	grid-row: 5;
+	grid-row: 6;
 	margin-top: 30px;
 }
 

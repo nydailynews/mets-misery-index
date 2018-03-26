@@ -118,7 +118,7 @@
 			</section>
 
 			<div class="main-image">
-				<img src="img/test-banner.png" style="position: absolute; left: 196px; top: 430px;">
+				<div id="image-banner"></div>
 				<img src="img/sad-mets-fan.jpg">
 			</div>
 
@@ -130,6 +130,14 @@
 				<p id="meter-number">5</p>
 				<canvas id="ometer"></canvas>
 			</div>
+
+<!-- AD GOES HERE -->
+<div class="ad center">
+		<div id='div-gpt-ad-1423507761396-3'>
+			<script> googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-3'); });</script>
+		</div>
+  </div>
+<!-- AD ENDS HERE -->
 
 			<section class="commentary">
 				<blockquote id="tweet" class="twitter-tweet" data-lang="en"><a id="tweet-link"></a></blockquote>
@@ -151,28 +159,59 @@
 			<section class="fan-misery">
 				<h2>Rate your fan misery</h2>
 				<p>On a scale of 0 to 10, how miserable are you as a Mets fan today?</p>
-				<div class="range-slider">
-					<input class="range-slider__range" type="range" value="3" min="0" max="10">
- 					<span class="range-slider__value">3</span>
- 					<div id="tickmarks">
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 						<div class="ticks">&nbsp;</div>
- 					</div>
- 					<div id="tick-number">
- 						<div>0</div>
- 						<div>5</div>
- 						<div>10</div>
- 					</div>
- 				</div>
+				<div id="radios">
+					<label for="fanmis0">
+						<input type="radio" name="fanmis" id="fanmis0" value="0" />
+						<span>0</span>
+					</label>
+					<label for="fanmis1">
+						<input type="radio" name="fanmis" id="fanmis1" value="1" />
+						<span>1</span>
+					</label>
+					<label for="fanmis2">
+						<input type="radio" name="fanmis" id="fanmis2" value="2" />
+						<span>2</span>
+					</label>
+					<label for="fanmis3">
+						<input type="radio" name="fanmis" id="fanmis3" value="3" />
+						<span>3</span>
+					</label>
+					<label for="fanmis4">
+						<input type="radio" name="fanmis" id="fanmis4" value="4" />
+						<span>4</span>
+					</label>
+					<label for="fanmis5">
+						<input type="radio" name="fanmis" id="fanmis5" value="5" />
+						<span>5</span>
+					</label>
+					<label for="fanmis6">
+						<input type="radio" name="fanmis" id="fanmis6" value="6" />
+						<span>6</span>
+					</label>
+					<label for="fanmis7">
+						<input type="radio" name="fanmis" id="fanmis7" value="7" />
+						<span>7</span>
+					</label>
+					<label for="fanmis8">
+						<input type="radio" name="fanmis" id="fanmis8" value="8" />
+						<span>8</span>
+					</label>
+					<label for="fanmis9">
+						<input type="radio" name="fanmis" id="fanmis9" value="9" />
+						<span>9</span>
+					</label>
+					<label for="fanmis10">
+						<input type="radio" name="fanmis" id="fanmis10" value="10" />
+						<span>10</span>
+					</label>
+				</div>
+				<div>
+					<button type="submit">Submit</button>
+					<button type="submit">View results</button>
+				</div>
+
+
+				<pre id="log"></pre>
 			</section>
 			
 			<section class="recent-news">
@@ -238,15 +277,6 @@
 	</article>
 </main>
 
-<!-- AD GOES HERE	
-	<div class="ad center">
-	<div id='div-gpt-ad-1423507761396-3'>
-	  <script>
-		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-3'); });
-	  </script>
-	</div>
-  </div>
-AD ENDS HERE -->
 
 <!-- CONTENT-END -->
 
