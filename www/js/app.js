@@ -121,6 +121,23 @@ var commentary = {
 }
 commentary.init();
 
+// FAN MISERY
+// Handler for form request and response.
+var fanm = {
+    config: {
+    },
+    update_config: function(config) {
+        // Take an external config object and update this config object.
+        for ( var key in config )
+        {
+            if ( config.hasOwnProperty(key) )
+            {
+                this.config[key] = config[key];
+            }
+        }
+    },
+};
+
 // MISERY INDEX
 // First init fires, then on_load.
 var misery = {
