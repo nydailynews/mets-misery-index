@@ -84,15 +84,95 @@ article {
 	margin-bottom: 45px;
 }
 
-#image-banner {
+/* ===== IMAGE BANNER  ===== */
+
+#ribbon {
+	width: 180px;
+	height: 280px;
+	margin: 50px auto 0;
 	position: relative;
-	top: 15%;
-	border: 50px solid #002D72;
-	border-left: 0;
-	border-right: 30px solid transparent;
-	width: 300px;
-	box-shadow: 0 8px 6px -6px black;
+	overflow: hidden;
 }
+
+#ribbon .inset {
+	width: 200px;
+	height: 55px;
+	position: absolute;
+	top: -50px;
+	left: -10px;
+	z-index: 5;
+	
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	
+	background: rgba(0,0,0,0.3);
+	
+	box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+}
+
+#ribbon .container {
+	position: relative;
+	width: 100px;
+	height: 250px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#ribbon .base {
+	height: 200px;
+	width: 100px;
+	background: #002D72;
+	position: relative;
+	z-index: 2;
+}
+
+#ribbon .base:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	width: 87px;
+	left: 6px;
+	height: 242px;
+	border-left: 1px dashed #FFF;
+	border-right: 1px dashed #FFF;
+}
+
+#ribbon .left_corner {
+	width: 100px;
+	height: 100px;
+	background: #002D72;
+	position: absolute;
+	bottom: 20px;
+	left: -50px;
+	z-index: 1;
+	
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#ribbon .right_corner {
+	width: 100px;
+	height: 100px;
+	background: #002D72;
+	position: absolute;
+	bottom: 20px;
+	right: -50px;
+	z-index: 1;
+	
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/* ===== IMAGE BANNER END ===== */
 
 .meter-explainer {
 	grid-column: 1 / 3;
@@ -150,7 +230,6 @@ blockquote a {
 #injury-tracker {
 	grid-column: 2 / 4;
 	grid-row: 4;
-	margin-top: 50px;
 }
 
 table {
