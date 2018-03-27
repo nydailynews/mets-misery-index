@@ -243,6 +243,12 @@ button {
 	font: normal 12px 'Open Sans', sans-serif;
 }
 
+#fan-result {
+	font-family: 'PT Serif', serif;
+    font-size: 35px;
+    text-align: center;
+}
+
 /* ===== RADIO BUTTONS END ===== */
 
 #recent-news ul {
