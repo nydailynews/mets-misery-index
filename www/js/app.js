@@ -152,6 +152,16 @@ var fanm = {
             }
         }
     },
+	form_results: function() {
+		console.log(fanm.data);
+	},
+	btn_submit: function() {
+		// Form handler for fan misery vote
+		var score = document.querySelector('input[name="fan-"]:checked').value;
+		path = './vote/?score=' + score + '&' + utils.rando();
+		console.log(path);
+		utils.get_json(path, fanm, fanm.form_results);
+	}
 };
 
 // MISERY INDEX
