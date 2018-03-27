@@ -139,7 +139,7 @@
   </div>
 <!-- AD ENDS HERE -->
 
-			<section class="commentary">
+			<section id="commentary">
 				<blockquote id="tweet" class="twitter-tweet" data-lang="en"><a id="tweet-link"></a></blockquote>
             </section>
 
@@ -156,9 +156,10 @@
 				</table>
 			</section>
 
-			<section class="fan-misery">
+			<section id="fan-misery">
 				<h2>Rate your fan misery</h2>
 				<p>On a scale of 0 to 10, how miserable are you as a Mets fan today?</p>
+                <form>
 				<div id="radios">
 					<label for="fanmis0">
 						<input type="radio" name="fanmis" id="fanmis0" value="0" />
@@ -206,14 +207,15 @@
 					</label>
 				</div>
 				<div>
-					<button type="submit">Submit</button>
+					<button type="submit" id="fan-submit" onClick="fanm.btn_submit();">Submit</button>
 				</div>
+                </form>
 
 
 				<pre id="log"></pre>
 			</section>
 			
-			<section class="recent-news">
+			<section id="recent-news">
 				<h2>Recent misery</h2>
 				<ul id="recent">
 				</ul>
