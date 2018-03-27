@@ -212,6 +212,11 @@ tr.inactive td {
 input[type="radio"] {
 	opacity: 0; /* hidden but still tabable */
 	position: absolute;
+	cursor: pointer;
+}
+
+input[type="radio"] + span:hover {
+	background-color: #FC4C02;
 }
 
 input[type="radio"] + span {
