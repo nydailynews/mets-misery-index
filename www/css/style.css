@@ -203,6 +203,7 @@ article {
 #commentary {
     grid-column: 1 / 2;
     grid-row: 4;
+    min-width: 460px;
 }
 
 blockquote q {
