@@ -200,10 +200,37 @@ var misery = {
         }
     },
     d: {},
+	ribbon_text: [
+	    ['SMOOTH'],
+        ['STEADY'],
+        ['ERM'],
+        ['HEY UM'],
+        ['UGH'],
+        ['UGH UGH'],
+        ['UGH UGH UGH'],
+        ['WHUH OH'],
+        ['OH NO'],
+        ['MAX PAIN'],
+        ['SO BAD'],
+        ['EVEN WORSE']
+	],
+	update_ribbon_text: function() {
+		// Update the text that goes on the ribbon depending on yesterday's misery.
+        var score = this.latest['misery-score'];
+        var text = misery.ribbon_text[score];
+		document.getElementById('photo-label').textContent = text;
+	},
+	update_meter: function() {
+        var score = this.latest['misery-score'];
+		document.getElementById('meter-number').textContent = score;
+        gauge.set(score);
+    },
     build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
         var l = misery.d.recent.length;
         var ul = document.getElementById('recent');
+        var recent = misery.d.recent.reverse();
+
         for ( var i = 0; i < l; i ++ ) {
             var li = document.createElement('li');
             if ( i >= 5 ) li = utils.add_class(li, 'view-more hide');
@@ -213,8 +240,8 @@ var misery = {
                 more.innerHTML = '<a href="javascript:misery.view_more();">View more</a>';
                 ul.appendChild(more);
             }
-            var item = misery.d.recent[i]['event'];
-            if ( misery.d.recent[i]['url'] !== '' ) item = '<a href="' + misery.d.recent[i]['url'] + '">' + misery.d.recent[i]['event'] + '</a>';
+            var item = recent[i]['event'];
+            if ( recent[i]['url'] !== '' ) item = '<a href="' + recent[i]['url'] + '">' + recent[i]['event'] + '</a>';
 
             li.innerHTML = item;
             ul.appendChild(li);
@@ -282,13 +309,14 @@ var misery = {
     },
     on_load_recent: function() {
         // Process the recent misery
-        console.log(misery.data);
         misery.d.recent = misery.data;
         misery.build_recent(misery.d.recent);
     },
     on_load_daily: function() {
         // Process the daily misery scores
-        console.log(misery.data);
+        misery.latest = misery.data[misery.data.length - 1];
+        misery.update_ribbon_text();
+        misery.update_meter();
 		misery.parse_time = d3.timeParse('%Y-%m-%d');
 		misery.format_time = d3.timeFormat('%B %e');
         misery.d.daily = misery.data;

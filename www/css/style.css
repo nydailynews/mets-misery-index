@@ -184,7 +184,10 @@ article {
     font: normal bold 60px 'Open Sans Condensed', sans-serif;
     text-transform: uppercase;
     color: white;
-    text-indent: 80px;
+    position: relative;
+    top: 70px;
+    left: -48px;
+    width: 200px;
 }
 
 
