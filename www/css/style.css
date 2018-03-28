@@ -175,6 +175,18 @@ article {
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+#ribbon p#photo-label {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    font: normal bold 60px 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    text-indent: 80px;
+}
+
 
 /* ===== IMAGE BANNER END ===== */
 
