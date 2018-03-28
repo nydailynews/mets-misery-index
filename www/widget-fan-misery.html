@@ -44,6 +44,13 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <style>
+#fan-result > div { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr [col-start]);
+    grid-template-rows: 1fr;
+    grid-gap: 10px 10px;
+    align-content: space-evenly;
+}
     </style>
 </head>
 <body>
@@ -54,7 +61,7 @@
     <article>
             
 			<section id="fan-misery">
-				<h2>Rate your fan misery</h2>
+				<h2>Rate your Mets-fan misery</h2>
                 <form id="fan-misery-form">
 				<p>From 0 (content) to 10 (couldn’t feel worse), rate how miserable are you as a Mets fan today.</p>
 				<div id="radios">
@@ -108,6 +115,8 @@
 				</div>
                 </form>
 				<div id="fan-result" class="hide">
+                    <div>
+                    <div>
 					<p>You rated your Mets fan misery:</p>
 					<i id="your-0" class="hide em em-heart_eyes"></i>
 					<i id="your-1" class="hide em em-grinning"></i>
@@ -121,7 +130,9 @@
 					<i id="your-9" class="hide em em-confounded"></i>
 					<i id="your-10" class="hide em em-hankey"></i>
 					<p><span class="meter-number" id="your-score"></span></p>
+                    </div>
 
+                    <div>
 					<p>Today’s average Mets-fan misery score:</p>
 					<i id="fan-0" class="hide em em-heart_eyes"></i>
 					<i id="fan-1" class="hide em em-grinning"></i>
@@ -135,6 +146,8 @@
 					<i id="fan-9" class="hide em em-confounded"></i>
 					<i id="fan-10" class="hide em em-hankey"></i>
 					<p><span class="meter-number" id="fan-score"></span></p>
+                    </div>
+                    </div>
 				</div>
 
 
