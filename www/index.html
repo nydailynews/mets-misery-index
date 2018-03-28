@@ -132,7 +132,7 @@
 			</div>
 
 			<div class="meter-explainer">
-				<p>The meter explainer goes here. &#8667;</p>
+				<p>Yesterday’s Mets misery score &#8667;</p>
 			</div>
 
 			<div class="meter">
@@ -168,7 +168,7 @@
 			<section id="fan-misery">
 				<h2>Rate your fan misery</h2>
 				<p>On a scale of 0 to 10, how miserable are you as a Mets fan today?</p>
-                <form>
+                <form id="fan-misery-form">
 				<div id="radios">
 					<label for="fan-0">
 						<input type="radio" name="fan-" id="fan-0" value="0" />
@@ -216,22 +216,23 @@
 					</label>
 				</div>
 				<div>
-					<button type="submit" id="fan-submit" onClick="fanm.btn_submit();">SUBMIT</button>
-				</div>
-				<div id="fan-result">
-					<i class="em em-heart_eyes">0</i>
-					<i class="em em-grinning">1</i>
-					<i class="em em-confused">2</i>
-					<i class="em em-anguished">3</i>
-					<i class="em em-astonished">4</i>
-					<i class="em em-expressionless">5</i>
-					<i class="em em-grimacing">6</i>
-					<i class="em em-cry">7</i>
-					<i class="em em-angry">8</i>
-					<i class="em em-confounded">9</i>
-					<i class="em em-hankey">10</i>
+					<button type="submit" id="fan-submit" onClick="fanm.btn_submit(this); return false;">Submit</button>
 				</div>
                 </form>
+				<div id="fan-result" class="hide">
+					<i id="fan-0" class="hide em em-heart_eyes"></i>
+					<i id="fan-1" class="hide em em-grinning"></i>
+					<i id="fan-2" class="hide em em-confused"></i>
+					<i id="fan-3" class="hide em em-anguished"></i>
+					<i id="fan-4" class="hide em em-astonished"></i>
+					<i id="fan-5" class="hide em em-expressionless"></i>
+					<i id="fan-6" class="hide em em-grimacing"></i>
+					<i id="fan-7" class="hide em em-cry"></i>
+					<i id="fan-8" class="hide em em-angry"></i>
+					<i id="fan-9" class="hide em em-confounded"></i>
+					<i id="fan-10" class="hide em em-hankey"></i>
+					<p><span id="fan-score"></span> total misery today.</p>
+				</div>
 
 
 				<pre id="log"></pre>

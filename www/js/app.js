@@ -24,16 +24,32 @@ var utils = {
         if ( +i < 10 ) return "0" + i;
         return i;
     },
-    parse_date: function(date ) {
+    parse_date_str: function(date) {
         // date is a datetime-looking string such as "2017-07-25"
-        // Returns a unixtime integer.
+        // Returns a date object.
         if ( typeof date !== 'string' ) return Date.now();
 
         var date_bits = date.split(' ')[0].split('-');
 
         // We do that "+date_bits[1] - 1" because months are zero-indexed.
         var d = new Date(date_bits[0], +date_bits[1] - 1, date_bits[2], 0, 0, 0);
+        return d;
+    },
+    parse_date: function(date) {
+        // date is a datetime-looking string such as "2017-07-25"
+        // Returns a unixtime integer.
+        var d = this.parse_date_str(date);
         return d.getTime();
+    },
+    days_between: function(from, to) {
+        // Get the number of days between two dates. Returns an integer. If to is left blank, defaults to today.
+        // Both from and to should be strings 'YYYY-MM-DD'.
+        // Cribbed from https://stackoverflow.com/questions/542938/how-do-i-get-the-number-of-days-between-two-dates-in-javascript
+        if ( to == null ) to = new Date();
+        else to = this.parse_date_str(to);
+        from = this.parse_date_str(from);
+        var days_diff = Math.floor((from-to)/(1000*60*60*24));
+        return days_diff;
     },
     get_json: function(path, obj, callback) {
         // Downloads local json and returns it.
@@ -136,6 +152,31 @@ var fanm = {
             }
         }
     },
+	form_results: function() {
+		// Remove the form, display the results.
+
+		console.log(fanm.data);
+		// Remove the form
+		el = document.getElementById('fan-misery-form');
+		el.parentNode.removeChild(el);
+
+		// Put together then display the results
+		var s = Math.round(fanm.data.score*10)/10;
+		var s_int = Math.floor(s);
+		document.getElementById('fan-score').textContent = s;
+		var emoji = document.getElementById('fan-' + s_int)
+		emoji.classList.remove('hide');
+		
+		// Show the div
+		document.getElementById('fan-result').setAttribute('class', '');	
+
+	},
+	btn_submit: function() {
+		// Form handler for fan misery vote
+		var score = document.querySelector('input[name="fan-"]:checked').value;
+		path = './vote/?score=' + score + '&' + utils.rando();
+		utils.get_json(path, fanm, fanm.form_results);
+	}
 };
 
 // MISERY INDEX
