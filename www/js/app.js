@@ -153,13 +153,28 @@ var fanm = {
         }
     },
 	form_results: function() {
+		// Remove the form, display the results.
+
 		console.log(fanm.data);
+		// Remove the form
+		el = document.getElementById('fan-misery-form');
+		el.parentNode.removeChild(el);
+
+		// Put together then display the results
+		var s = Math.round(fanm.data.score*10)/10;
+		var s_int = Math.floor(s);
+		document.getElementById('fan-score').textContent = s;
+		var emoji = document.getElementById('fan-' + s_int)
+		emoji.classList.remove('hide');
+		
+		// Show the div
+		document.getElementById('fan-result').setAttribute('class', '');	
+
 	},
 	btn_submit: function() {
 		// Form handler for fan misery vote
 		var score = document.querySelector('input[name="fan-"]:checked').value;
 		path = './vote/?score=' + score + '&' + utils.rando();
-		console.log(path);
 		utils.get_json(path, fanm, fanm.form_results);
 	}
 };
