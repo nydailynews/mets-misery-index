@@ -191,7 +191,7 @@ article {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-#meter-number {
+.meter-number, #meter-number {
 	font: bold 50px "Open Sans Condensed", sans-serif;
 	color: #FFF;
 }
@@ -224,7 +224,7 @@ blockquote span:before {
 }
 
 blockquote a {
-	color: #000;
+	color: #333;
 }
 
 #injury-tracker {
@@ -268,14 +268,21 @@ tr.inactive td {
 	font: normal 14px 'Open Sans', sans-serif;
 	line-height: 19px;
 	text-align: left;
-	margin-bottom: 20px;
+}
+#fan-misery .em {
+    float: left;
+    margin-right: .3em;
+    margin-top: 10px;
+}
+#fan-misery #fan-score {
+    color: #333;
 }
 
 /* ===== RADIO BUTTONS ===== */
 
 #radios {
 	text-align: center;
-	margin: 0 auto;
+	margin: 10px auto 0;
 	display: flex;
 }
 
@@ -365,7 +372,7 @@ button {
     list-style-type: none;
     text-align: right;
 }
-.hide {
+#fan-result .hide, .hide {
     display: none;
 }
 /*--------- FAN SLIDER ---------*/
