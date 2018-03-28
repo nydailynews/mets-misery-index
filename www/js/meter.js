@@ -3,7 +3,7 @@ var opts = {
     lineWidth: 0.5, // The line thickness
     radiusScale: 1, // Relative radius
     pointer: {
-    length: 0.6, // // Relative to gauge radius
+    length: 0.7, // // Relative to gauge radius
     strokeWidth: 0.05, // The thickness
     color: '#000000' // Fill color
 },
