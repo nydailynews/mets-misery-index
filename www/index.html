@@ -153,6 +153,7 @@
             </section>
 
             <section id="injury-tracker">
+<<<<<<< HEAD
                 <h2>Injury tracker</h2>
                 <table id="injury">
                     <thead>
@@ -244,6 +245,114 @@
                 </ul>
             </section>
             
+=======
+				<h2>Injury tracker</h2>
+				<table id="injury">
+					<thead>
+						<td>Player</td>
+						<td>Position</td>
+						<td>Injury</td>
+						<td>DL stint</td>
+						<td>DL start</td>
+					</thead>
+				</table>
+			</section>
+
+			<section id="fan-misery">
+				<h2>Rate your fan misery</h2>
+                <form id="fan-misery-form">
+				<p>From 0 (content) to 10 (couldn’t feel worse), rate how miserable are you as a Mets fan today.</p>
+				<div id="radios">
+					<label for="fan-0">
+						<input type="radio" name="fan-" id="fan-0" value="0" />
+						<span>0</span>
+					</label>
+					<label for="fan-1">
+						<input type="radio" name="fan-" id="fan-1" value="1" />
+						<span>1</span>
+					</label>
+					<label for="fan-2">
+						<input type="radio" name="fan-" id="fan-2" value="2" />
+						<span>2</span>
+					</label>
+					<label for="fan-3">
+						<input type="radio" name="fan-" id="fan-3" value="3" />
+						<span>3</span>
+					</label>
+					<label for="fan-4">
+						<input type="radio" name="fan-" id="fan-4" value="4" />
+						<span>4</span>
+					</label>
+					<label for="fan-5">
+						<input type="radio" name="fan-" id="fan-5" value="5" />
+						<span>5</span>
+					</label>
+					<label for="fan-6">
+						<input type="radio" name="fan-" id="fan-6" value="6" />
+						<span>6</span>
+					</label>
+					<label for="fan-7">
+						<input type="radio" name="fan-" id="fan-7" value="7" />
+						<span>7</span>
+					</label>
+					<label for="fan-8">
+						<input type="radio" name="fan-" id="fan-8" value="8" />
+						<span>8</span>
+					</label>
+					<label for="fan-9">
+						<input type="radio" name="fan-" id="fan-9" value="9" />
+						<span>9</span>
+					</label>
+					<label for="fan-10">
+						<input type="radio" name="fan-" id="fan-10" value="10" />
+						<span>10</span>
+					</label>
+				</div>
+				<div>
+					<button type="submit" id="fan-submit" onClick="fanm.btn_submit(this); return false;">Submit</button>
+				</div>
+                </form>
+				<div id="fan-result" class="hide">
+					<p>You rated your Mets fan misery:</p>
+					<i id="your-0" class="hide em em-heart_eyes"></i>
+					<i id="your-1" class="hide em em-grinning"></i>
+					<i id="your-2" class="hide em em-confused"></i>
+					<i id="your-3" class="hide em em-anguished"></i>
+					<i id="your-4" class="hide em em-astonished"></i>
+					<i id="your-5" class="hide em em-expressionless"></i>
+					<i id="your-6" class="hide em em-grimacing"></i>
+					<i id="your-7" class="hide em em-cry"></i>
+					<i id="your-8" class="hide em em-angry"></i>
+					<i id="your-9" class="hide em em-confounded"></i>
+					<i id="your-10" class="hide em em-hankey"></i>
+					<p><span class="meter-number" id="your-score"></span></p>
+
+					<p>Today’s average Mets-fan misery score:</p>
+					<i id="fan-0" class="hide em em-heart_eyes"></i>
+					<i id="fan-1" class="hide em em-grinning"></i>
+					<i id="fan-2" class="hide em em-confused"></i>
+					<i id="fan-3" class="hide em em-anguished"></i>
+					<i id="fan-4" class="hide em em-astonished"></i>
+					<i id="fan-5" class="hide em em-expressionless"></i>
+					<i id="fan-6" class="hide em em-grimacing"></i>
+					<i id="fan-7" class="hide em em-cry"></i>
+					<i id="fan-8" class="hide em em-angry"></i>
+					<i id="fan-9" class="hide em em-confounded"></i>
+					<i id="fan-10" class="hide em em-hankey"></i>
+					<p><span class="meter-number" id="fan-score"></span></p>
+				</div>
+
+
+				<pre id="log"></pre>
+			</section>
+			
+			<section id="recent-news">
+				<h2>Recent misery</h2>
+				<ul id="recent">
+				</ul>
+			</section>
+			
+>>>>>>> 0c29d4ee04c42c340bbe26f1ebd7135111574e82
     <style>
         .axis text {
           text-transform: capitalize; 

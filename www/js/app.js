@@ -164,7 +164,12 @@ var fanm = {
 		var s = Math.round(fanm.data.score*10)/10;
 		var s_int = Math.floor(s);
 		document.getElementById('fan-score').textContent = s;
+		document.getElementById('your-score').textContent = fanm.your_score;
+
+		// Show the relevant emojis
 		var emoji = document.getElementById('fan-' + s_int)
+		emoji.classList.remove('hide');
+		emoji = document.getElementById('your-' + fanm.your_score)
 		emoji.classList.remove('hide');
 		
 		// Show the div
@@ -173,8 +178,8 @@ var fanm = {
 	},
 	btn_submit: function() {
 		// Form handler for fan misery vote
-		var score = document.querySelector('input[name="fan-"]:checked').value;
-		path = './vote/?score=' + score + '&' + utils.rando();
+		fanm.your_score = document.querySelector('input[name="fan-"]:checked').value;
+		path = './vote/?score=' + fanm.your_score + '&' + utils.rando();
 		utils.get_json(path, fanm, fanm.form_results);
 	}
 };
