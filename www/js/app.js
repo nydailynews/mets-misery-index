@@ -318,13 +318,19 @@ var misery = {
     on_load_daily: function() {
         // Process the daily misery scores
         misery.latest = misery.data[misery.data.length - 1];
-        misery.update_ribbon_text();
-        misery.update_meter();
-        misery.update_photo();
-		misery.parse_time = d3.timeParse('%Y-%m-%d');
-		misery.format_time = d3.timeFormat('%B %e');
+        misery.yesterday = misery.data[misery.data.length - 2];
         misery.d.daily = misery.data;
-		misery.build_daily();
+
+		// Test for the existence of these elements before updating them.
+		// The "!!" makes the following statement evaluate to a boolean.
+        if ( !! document.getElementById('ribbon') ) misery.update_ribbon_text();
+        if ( !! document.getElementById('meter-number') ) misery.update_meter();
+        if ( !! document.getElementById('lead-photo') ) misery.update_photo();
+		if ( typeof d3 === 'object' ) {
+			misery.parse_time = d3.timeParse('%Y-%m-%d');
+			misery.format_time = d3.timeFormat('%B %e');
+			misery.build_daily();
+		}
     },
     init: function(year) {
         if ( year == null ) year = 2018;
