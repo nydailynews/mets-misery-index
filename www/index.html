@@ -15,9 +15,9 @@
     <meta name="twitter:title" content='Mets Misery Index' />
 
     <!-- Descriptions -->
-    <meta name="description" content="DESC" />
-    <meta property="og:description" content="DESC" />
-    <meta name="twitter:description" content="DESC" />
+    <meta name="description" content="Charting the day-by-day misery of the New York Mets. Also includes the New York Mets injury tracker." />
+    <meta property="og:description" content="Charting the day-by-day misery of the New York Mets. Also includes the New York Mets injury tracker." />
+    <meta name="twitter:description" content="Charting the day-by-day misery of the New York Mets. Also includes the New York Mets injury tracker." />
 
     <!-- KEYWORD -->
     <meta name="keywords" content="New York Mets,what are all the bad things that have happened to the Mets this year,baseball" />
@@ -71,8 +71,8 @@
     <script src="//assets.adobedtm.com/4fc527d6fda921c80e462d11a29deae2e4cf7514/satelliteLib-c91fdc6ac624c6cbcd50250f79786de339793801.js"></script>
     <link rel="stylesheet" href="//www.nydailynews.com/nydn/c/rh.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700|PT+Serif:400,400i" rel="stylesheet">
+    <link rel="stylesheet" href="css/emoji.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700|PT+Serif:400,400i">
     <script data-main="//www.nydailynews.com/nydn/js/rh.js?r=20170405001" src="//www.nydailynews.com/nydn/js/require.js?r=2016LIST" defer></script>
       
     <script>
@@ -111,16 +111,16 @@
 <!-- CONTENT-START -->
 <main>
     <article>
+		<section class="intro-text">
+			<h1>Mets Misery Index</h1>
+			<p class="description">
+				<strong>The Mets are off to a very Mets-ish start.</strong>
+				The team’s hope of getting the Five Aces together to start the season was dashed when Zack Wheeler stunk it up and got demoted to Triple-A. Jason Vargas needed surgery on his non-throwing hand and reliever Rafael Montero's career could be on the line with his upcoming Tommy John surgery.
+				<strong>Follow along as we track the Mets misery, day by day.</strong>
+			</p>
+			<p class="description deemphasize">Latest misery recorded <span id="datestamp"></span></p>
+		</section>
         <div class="grid-wrapper">
-            <section class="intro-text">
-                <h1>Mets Misery Index</h1>
-                <p class="description">
-					<strong>The Mets are off to a very Mets-ish start.</strong>
-					The team’s hope of getting the Five Aces together to start the season was dashed when Zack Wheeler stunk it up and got demoted to Triple-A. Jason Vargas needed surgery on his non-throwing hand and reliever Rafael Montero's career could be on the line with his upcoming Tommy John surgery.
-					<strong>Follow along as we track the Mets misery, day by day.</strong>
-				</p>
-            </section>
-
             <div id="ribbon">
                     <div class="inset"></div>
                     <div class="container">
@@ -299,20 +299,21 @@
             #daily-misery g.x g.tick:nth-child(35n+2) { display: block; }
         }
     </style>
-           <!--  <section id="daily-chart">
+           <section id="daily-chart">
                 <h2>Mets misery, day by day</h2>
                 <figure>
                     <svg id="daily-misery"></svg>
                     <figcaption></figcaption>
                     <table></table>
                 </figure>
-            </section> -->
+            </section>
         </div>
 
         <p class="latest-news">LATEST METS NEWS <a href="http://www.nydailynews.com/sports/baseball/mets"></a>: <strong id="latest-news-headline"></strong></p>
         <script onload="document.getElementById('latest-news-headline').innerHTML=hed;" src="#"></script>
         
 
+	<p class="credit deemphasize">Interactive by Amara Grautski and Andy Clayton and Kelli R. Parker and Joe Murphy</p>
 <!-- AD GOES HERE   
 <div class="ad center">
     <div id='div-gpt-ad-1423507761396-1'>
@@ -329,9 +330,8 @@
 
 <!-- JAVASCRIPTS -->
     <script src="http://interactive.nydailynews.com/js/d3/d3.v4.min.js"></script>
-    <script src='https://bernii.github.io/gauge.js/dist/gauge.min.js'></script>
+    <script src="js/gauge.min.js"></script>
     <script src="js/meter.js"></script>
-    <script src="js/slider.js"></script>
     <script onload="commentary.init(); misery.init(); injuries.init();" src="js/app.js"></script>
 
 

@@ -41,7 +41,8 @@
     <meta name="localeCountry" content="US"/>
     <meta name="localeLanguage" content="en" />
 
-    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="//www.nydailynews.com/nydn/c/rh.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <style>
     </style>
@@ -53,6 +54,18 @@
 <main>
     <article>
             
+            <section id="injury-tracker">
+				<h2>Mets injury tracker</h2>
+				<table id="injury">
+					<thead>
+						<th>Player</th>
+						<th>Position</th>
+						<th>Injury</th>
+						<th>DL stint</th>
+						<th>DL start</th>
+					</thead>
+				</table>
+			</section>
 <script>
 </script>
 
@@ -60,6 +73,6 @@
 </main>
 
 <!-- CONTENT-END -->
-<script onload="" src="js/app.js"></script>
+<script onload="injuries.init();" src="js/app.js"></script>
 </body>
 </html>
