@@ -68,6 +68,15 @@ article {
     text-align: center;
 }
 
+.latest-news {
+    text-align: center;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 12px;
+}
+
 .grid-wrapper {
     max-width: 940px;
     margin: 0 auto;
@@ -77,7 +86,7 @@ article {
     -ms-grid-columns: 1fr 1fr 1fr;
     grid-template-columns: repeat(3, 1fr);
     min-height: 100%;
-	flex: 1;
+    flex: 1;
 }
 
 .intro-text {
@@ -233,8 +242,8 @@ article {
 *::-ms-backdrop, .meter { margin-top: -180px; } 
 
 .meter-number, #meter-number {
-	font: bold 50px "Open Sans Condensed", sans-serif;
-	color: #FFF;
+    font: bold 50px "Open Sans Condensed", sans-serif;
+    color: #FFF;
 }
 
 #commentary {
@@ -263,7 +272,7 @@ blockquote span:before {
 }
 
 blockquote a {
-	color: #333;
+    color: #333;
 }
 
 #injury-tracker {
@@ -306,9 +315,9 @@ tr.inactive td {
 }
 
 #fan-misery p {
-	font: normal 14px 'Open Sans', sans-serif;
-	line-height: 19px;
-	text-align: left;
+    font: normal 14px 'Open Sans', sans-serif;
+    line-height: 19px;
+    text-align: left;
 }
 
 #fan-misery .em {
@@ -324,9 +333,9 @@ tr.inactive td {
 /* ===== RADIO BUTTONS ===== */
 
 #radios {
-	text-align: center;
-	margin: 10px auto 0;
-	display: flex;
+    text-align: center;
+    margin: 10px auto 0;
+    display: flex;
 }
 
 #radios label {
