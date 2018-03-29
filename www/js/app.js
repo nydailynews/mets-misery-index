@@ -202,18 +202,18 @@ var misery = {
     },
     d: {},
 	ribbon_text: [
-	    ['SMOOTH'],
-        ['STEADY'],
+	    ['AMAZIN’'],
+        ['BELIEVE'],
         ['ERM'],
-        ['HEY UM'],
+        ['HEY, UM'],
         ['UGH'],
-        ['UGH UGH'],
-        ['UGH UGH UGH'],
-        ['WHUH OH'],
         ['OH NO'],
-        ['MAX PAIN'],
+        ['YOU’RE KILLIN’ ME'],
+        ['LIFE’S A PITCH'],
+        ['😭'],
         ['SO BAD'],
-        ['EVEN WORSE']
+        ['MAX PAIN'],
+        ['END THE SEASON NOW!']
 	],
 	update_ribbon_text: function() {
 		// Update the text that goes on the ribbon depending on yesterday's misery.
@@ -245,8 +245,10 @@ var misery = {
                 more.innerHTML = '<a href="javascript:misery.view_more();">View more</a>';
                 ul.appendChild(more);
             }
-            var item = recent[i]['event'];
-            if ( recent[i]['url'] !== '' ) item = '<a href="' + recent[i]['url'] + '">' + recent[i]['event'] + '</a>';
+			var ap_date = utils.ap_date(recent[i]['date']);
+			if ( ap_date == 'March 28' ) ap_date = 'Preseason';
+            var item = ap_date + ': ' + recent[i]['event'];
+            if ( recent[i]['url'] !== '' ) item = ap_date + ': <a href="' + recent[i]['url'] + '">' + recent[i]['event'] + '</a>';
 
             li.innerHTML = item;
             ul.appendChild(li);
