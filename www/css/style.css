@@ -263,7 +263,7 @@ thead {
         color: white;
 }
 
-td {
+th, td {
         height: 25px;
         vertical-align: middle;
 }

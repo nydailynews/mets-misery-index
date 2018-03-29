@@ -166,7 +166,7 @@ var fanm = {
 		document.getElementById('your-score').textContent = fanm.your_score;
 
 		// Show the relevant emojis
-		var emoji = document.getElementById('fan-' + s_int)
+		var emoji = document.getElementById('fanm-' + s_int)
 		emoji.classList.remove('hide');
 		emoji = document.getElementById('your-' + fanm.your_score)
 		emoji.classList.remove('hide');
@@ -215,17 +215,17 @@ var misery = {
 	],
 	update_ribbon_text: function() {
 		// Update the text that goes on the ribbon depending on yesterday's misery.
-        var score = this.latest['misery-score'];
+        var score = this.yesterday['misery-score'];
         var text = misery.ribbon_text[score][0];
 		document.getElementById('photo-label').innerHTML = text.replace(' ', '&nbsp;');
 	},
 	update_meter: function() {
-        var score = this.latest['misery-score'];
+        var score = this.yesterday['misery-score'];
 		document.getElementById('meter-number').textContent = score;
         gauge.set(score);
     },
 	update_photo: function() {
-        var score = this.latest['misery-score'];
+        var score = this.yesterday['misery-score'];
 		document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
     },
     build_recent: function() {
