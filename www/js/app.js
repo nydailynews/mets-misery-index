@@ -216,13 +216,17 @@ var misery = {
 	update_ribbon_text: function() {
 		// Update the text that goes on the ribbon depending on yesterday's misery.
         var score = this.latest['misery-score'];
-        var text = misery.ribbon_text[score];
-		document.getElementById('photo-label').textContent = text;
+        var text = misery.ribbon_text[score][0];
+		document.getElementById('photo-label').innerHTML = text.replace(' ', '&nbsp;');
 	},
 	update_meter: function() {
         var score = this.latest['misery-score'];
 		document.getElementById('meter-number').textContent = score;
         gauge.set(score);
+    },
+	update_photo: function() {
+        var score = this.latest['misery-score'];
+		document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
     },
     build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
@@ -316,6 +320,7 @@ var misery = {
         misery.latest = misery.data[misery.data.length - 1];
         misery.update_ribbon_text();
         misery.update_meter();
+        misery.update_photo();
 		misery.parse_time = d3.timeParse('%Y-%m-%d');
 		misery.format_time = d3.timeFormat('%B %e');
         misery.d.daily = misery.data;
