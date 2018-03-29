@@ -313,7 +313,7 @@ var misery = {
     on_load_recent: function() {
         // Process the recent misery
         misery.d.recent = misery.data;
-        misery.build_recent(misery.d.recent);
+        if ( !! document.getElementById('recent') ) misery.build_recent(misery.d.recent);
     },
     on_load_daily: function() {
         // Process the daily misery scores
