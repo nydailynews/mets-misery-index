@@ -7,11 +7,11 @@ var utils = {
     ap_months: ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'],
     ap_date: function(date) {
         // Given a date such as "2018-02-03" return an AP style date.
-		var this_year = new Date().getFullYear();
+        var this_year = new Date().getFullYear();
         var parts = date.split('-')
         var day = +parts[2];
         var month = this.ap_months[+parts[1] - 1];
-		if ( this_year == +parts[0] ) return month + ' ' + day;
+        if ( this_year == +parts[0] ) return month + ' ' + day;
         return month + ' ' + day + ', ' + parts[0];
     },
     rando: function() {
@@ -153,36 +153,36 @@ var fanm = {
             }
         }
     },
-	form_results: function() {
-		// Remove the form, display the results.
+    form_results: function() {
+        // Remove the form, display the results.
 
-		console.log(fanm.data);
-		// Remove the form
-		el = document.getElementById('fan-misery-form');
-		el.parentNode.removeChild(el);
+        console.log(fanm.data);
+        // Remove the form
+        el = document.getElementById('fan-misery-form');
+        el.parentNode.removeChild(el);
 
-		// Put together then display the results
-		var s = Math.round(fanm.data.score*10)/10;
-		var s_int = Math.floor(s);
-		document.getElementById('fan-score').textContent = s;
-		document.getElementById('your-score').textContent = fanm.your_score;
+        // Put together then display the results
+        var s = Math.round(fanm.data.score*10)/10;
+        var s_int = Math.floor(s);
+        document.getElementById('fan-score').textContent = s;
+        document.getElementById('your-score').textContent = fanm.your_score;
 
-		// Show the relevant emojis
-		var emoji = document.getElementById('fanm-' + s_int)
-		emoji.classList.remove('hide');
-		emoji = document.getElementById('your-' + fanm.your_score)
-		emoji.classList.remove('hide');
-		
-		// Show the div
-		document.getElementById('fan-result').setAttribute('class', '');	
+        // Show the relevant emojis
+        var emoji = document.getElementById('fanm-' + s_int)
+        emoji.classList.remove('hide');
+        emoji = document.getElementById('your-' + fanm.your_score)
+        emoji.classList.remove('hide');
+        
+        // Show the div
+        document.getElementById('fan-result').setAttribute('class', '');    
 
-	},
-	btn_submit: function() {
-		// Form handler for fan misery vote
-		fanm.your_score = document.querySelector('input[name="fan-"]:checked').value;
-		path = './vote/?score=' + fanm.your_score + '&' + utils.rando();
-		utils.get_json(path, fanm, fanm.form_results);
-	}
+    },
+    btn_submit: function() {
+        // Form handler for fan misery vote
+        fanm.your_score = document.querySelector('input[name="fan-"]:checked').value;
+        path = './vote/?score=' + fanm.your_score + '&' + utils.rando();
+        utils.get_json(path, fanm, fanm.form_results);
+    }
 };
 
 // MISERY INDEX
@@ -201,8 +201,8 @@ var misery = {
         }
     },
     d: {},
-	ribbon_text: [
-	    ['AMAZIN’'],
+    ribbon_text: [
+        ['AMAZIN’'],
         ['BELIEVE'],
         ['ERM'],
         ['HEY, UM'],
@@ -214,21 +214,21 @@ var misery = {
         ['SO BAD'],
         ['MAX PAIN'],
         ['END THE SEASON NOW!']
-	],
-	update_ribbon_text: function() {
-		// Update the text that goes on the ribbon depending on yesterday's misery.
+    ],
+    update_ribbon_text: function() {
+        // Update the text that goes on the ribbon depending on yesterday's misery.
         var score = this.yesterday['misery-score'];
         var text = misery.ribbon_text[score][0];
-		document.getElementById('photo-label').innerHTML = text.replace(' ', '&nbsp;');
-	},
-	update_meter: function() {
+        document.getElementById('photo-label').innerHTML = text.replace(' ', '&nbsp;');
+    },
+    update_meter: function() {
         var score = this.yesterday['misery-score'];
-		document.getElementById('meter-number').textContent = score;
+        document.getElementById('meter-number').textContent = score;
         gauge.set(score);
     },
-	update_photo: function() {
+    update_photo: function() {
         var score = this.yesterday['misery-score'];
-		document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
+        document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
     },
     build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
@@ -245,8 +245,8 @@ var misery = {
                 more.innerHTML = '<a href="javascript:misery.view_more();">View more</a>';
                 ul.appendChild(more);
             }
-			var ap_date = utils.ap_date(recent[i]['date']);
-			if ( ap_date == 'March 28' ) ap_date = 'Preseason';
+            var ap_date = utils.ap_date(recent[i]['date']);
+            if ( ap_date == 'March 28' ) ap_date = 'Preseason';
             var item = ap_date + ': ' + recent[i]['event'];
             if ( recent[i]['url'] !== '' ) item = ap_date + ': <a href="' + recent[i]['url'] + '">' + recent[i]['event'] + '</a>';
 
@@ -259,59 +259,59 @@ var misery = {
         $('.view-more').removeClass('hide');
         $('.view-more-link').addClass('hide');
     },
-	c: {},
+    c: {},
     build_daily: function() {
         // Build out the daily misery chart
-		
+        
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
-		this.c.width = 1000 - margin.left - margin.right;
-		this.c.height = 200 - margin.top - margin.bottom;
-		//if ( width < 350 ) width = 330;
+        this.c.width = 1000 - margin.left - margin.right;
+        this.c.height = 200 - margin.top - margin.bottom;
+        //if ( width < 350 ) width = 330;
 
-		var x = d3.scaleBand().range([5, this.c.width], .5);
-		var y = d3.scaleLinear().range([this.c.height, 0]);
+        var x = d3.scaleBand().range([5, this.c.width], .5);
+        var y = d3.scaleLinear().range([this.c.height, 0]);
 
-		var x_axis = d3.axisBottom(x);
-		var y_axis = d3.axisLeft(y)
-			.ticks(6);
+        var x_axis = d3.axisBottom(x);
+        var y_axis = d3.axisLeft(y)
+            .ticks(6);
 
-		var chart = d3.select('#daily-misery')
-			.attr("width", this.c.width + margin.left + margin.right)
-			.attr("height", this.c.height + margin.top + margin.bottom)
-			.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var chart = d3.select('#daily-misery')
+            .attr("width", this.c.width + margin.left + margin.right)
+            .attr("height", this.c.height + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         x.domain(season_dates.map(function(d) { return misery.format_time(misery.parse_time(d)) }));
         //y.domain([0, d3.max(misery.d.recent, function(d) { return +d['misery-score']; })]);
         y.domain([0, 10]);
-		chart.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + this.c.height + ")")
-			.call(x_axis)
-			.append("text")
-			.attr("x", 10)
-			.attr("dy", "2.5em")
-			.style("text-anchor", "start")
-			.text('Date');
+        chart.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + this.c.height + ")")
+            .call(x_axis)
+            .append("text")
+            .attr("x", 10)
+            .attr("dy", "2.5em")
+            .style("text-anchor", "start")
+            .text('Date');
 
-		chart.append("g")
-			.attr("class", "y axis")
-			.call(y_axis)
-			.append("text")
-			.attr("transform", "rotate(-90)")
-			.attr("y", 6)
-			.attr("dy", ".71em")
-			.style("text-anchor", "end")
-			.text('Misery');
+        chart.append("g")
+            .attr("class", "y axis")
+            .call(y_axis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text('Misery');
 
-		chart.selectAll("bar")
-			.data(misery.d.daily)
-			.enter().append("rect")
-			.attr("class", "bar")
-			.attr("x", function(d) { return x(misery.format_time(misery.parse_time(d['date']))); })
-			.attr("width", x.bandwidth())
-			.attr("y", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return y(+d['misery-score']); })
-			.attr("height", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return misery.c.height - y(+d['misery-score']); });
+        chart.selectAll("bar")
+            .data(misery.d.daily)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(misery.format_time(misery.parse_time(d['date']))); })
+            .attr("width", x.bandwidth())
+            .attr("y", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return y(+d['misery-score']); })
+            .attr("height", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return misery.c.height - y(+d['misery-score']); });
 
     },
     on_load_recent: function() {
@@ -325,17 +325,17 @@ var misery = {
         misery.yesterday = misery.data[misery.data.length - 2];
         misery.d.daily = misery.data;
 
-		// Test for the existence of these elements before updating them.
-		// The "!!" makes the following statement evaluate to a boolean.
+        // Test for the existence of these elements before updating them.
+        // The "!!" makes the following statement evaluate to a boolean.
         if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.latest['date']);
         if ( !! document.getElementById('ribbon') ) misery.update_ribbon_text();
         if ( !! document.getElementById('meter-number') ) misery.update_meter();
         if ( !! document.getElementById('lead-photo') ) misery.update_photo();
-		if ( typeof d3 === 'object' ) {
-			misery.parse_time = d3.timeParse('%Y-%m-%d');
-			misery.format_time = d3.timeFormat('%B %e');
-			misery.build_daily();
-		}
+        if ( typeof d3 === 'object' ) {
+            misery.parse_time = d3.timeParse('%Y-%m-%d');
+            misery.format_time = d3.timeFormat('%B %e');
+            misery.build_daily();
+        }
     },
     init: function(year) {
         if ( year == null ) year = 2018;
@@ -369,19 +369,19 @@ var injuries = {
             var injury = data[i]['injury'];
             if ( data[i]['url'] !== '' ) injury = '<a href="' + data[i]['url'].trim() + '">' + data[i]['injury'] + '</a>';
             var start_date = utils.ap_date(data[i]['dl-start-date']);
-			if ( data[i]['dl-start-date'].trim().toLowerCase() == 'shruggie' ) start_date = '¯\\_(ツ)_/¯';
+            if ( data[i]['dl-start-date'].trim().toLowerCase() == 'shruggie' ) start_date = '¯\\_(ツ)_/¯';
 
-			var dl_status = data[i]['dl-status'];
-			if ( dl_status.trim().toLowerCase() == 'shruggie' ) dl_status = '¯\\_(ツ)_/¯';
+            var dl_status = data[i]['dl-status'];
+            if ( dl_status.trim().toLowerCase() == 'shruggie' ) dl_status = '¯\\_(ツ)_/¯';
 
             var tr = document.createElement('tr');
-			if ( dl_status.trim() === '' ) tr.setAttribute('class', 'inactive');
+            if ( dl_status.trim() === '' ) tr.setAttribute('class', 'inactive');
             var markup = '\n\
-						<td>' + data[i]['player-name'] + '</td>\n\
-						<td>' + data[i]['player-position'] + '</td>\n\
-						<td>' + injury + '</td>\n\
-						<td>' + dl_status + '</td>\n\
-						<td>' + start_date + '</td>\n\
+                        <td>' + data[i]['player-name'] + '</td>\n\
+                        <td>' + data[i]['player-position'] + '</td>\n\
+                        <td>' + injury + '</td>\n\
+                        <td>' + dl_status + '</td>\n\
+                        <td>' + start_date + '</td>\n\
                         ';
             tr.innerHTML = markup;
             t.appendChild(tr);
