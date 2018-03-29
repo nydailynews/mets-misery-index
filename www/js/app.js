@@ -325,6 +325,7 @@ var misery = {
 
 		// Test for the existence of these elements before updating them.
 		// The "!!" makes the following statement evaluate to a boolean.
+        if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.latest['date']);
         if ( !! document.getElementById('ribbon') ) misery.update_ribbon_text();
         if ( !! document.getElementById('meter-number') ) misery.update_meter();
         if ( !! document.getElementById('lead-photo') ) misery.update_photo();
