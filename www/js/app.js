@@ -382,7 +382,7 @@ var injuries = {
         }
     },
     on_load: function() {
-        injuries.build_table(injuries.data);
+        if ( !! document.getElementById('injury') ) injuries.build_table(injuries.data);
     },
     init: function(year) {
         if ( year == null ) year = 2018;
