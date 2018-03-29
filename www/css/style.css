@@ -22,7 +22,7 @@ h2 {
 p.description {
     font-family: 'PT Serif', serif;
     font-size: 20px;
-    line-height: 25px;
+    line-height: 28px;
 }
 
 p.byline {
@@ -220,7 +220,6 @@ article {
 #commentary {
     grid-column: 1 / 2;
     grid-row: 4;
-    min-width: 460px;
 }
 
 blockquote q {
@@ -464,6 +463,10 @@ button {
         width: 100%;
     }
 
+    #injury-tracker th:nth-child(2), th:nth-child(3) {
+        display: none;
+    }
+
     #injury-tracker td:nth-child(2), td:nth-child(3) {
         display: none;
     }
@@ -507,7 +510,6 @@ button {
     #ribbon {
         left: 7%;
         top: -70px;
-
     }
 
     #main-image img {
@@ -538,6 +540,10 @@ button {
 
     table#injury {
         width: 100%;
+    }
+
+    #injury-tracker th:nth-child(2), th:nth-child(3) {
+        display: none;
     }
 
     #injury-tracker td:nth-child(2), td:nth-child(3) {
