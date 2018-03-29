@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Rate your misery as a Mets fan</title>
+    <link rel="icon" type="image/png" href="http://interactive.nydailynews.com/favicons.png">
+    <!-- DEFAULT -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <!-- DESCRIPTION -->
+    <meta name="description" content="" />
+
+    <!-- KEYWORD -->
+    <meta name="keywords" content="" />
+
+    <!-- LINK -->
+    <link rel="canonical" href="http://interactive.nydailynews.com/project/misery-index/">
+    <meta property="og:url" content="http://interactive.nydailynews.com/project/misery-index/" />
+    <meta name="twitter:url" content="http://interactive.nydailynews.com/project/misery-index/" />
+
+    <!-- NO NEED TO FILL -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="http://interactive.nydailynews.com"/>
+    <meta name="twitter:site" content="@nydailynews">
+    <meta name="twitter:creator" content="@joemurph">
+    <meta name="decorator" content="responsive" />
+    <meta name="nydn_section" content="NY Daily News" />
+    <meta name="msvalidate.01" content="02916AAC0DA8B068EFE01D721E03ED7E" />
+    <meta name="p:domain_verify" content="78efe4f5c9935744af497772f68a0ee7" />
+    <meta property="fb:app_id" content="107464888913" />
+    <meta property="fb:admins" content="1594068001" />
+    <meta property="fb:pages" content="268914272540" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="NY Daily News" />
+    <meta property="article:publisher" content="https://www.facebook.com/NYDailyNews/" />
+    <meta name="localeCountry" content="US"/>
+    <meta name="localeLanguage" content="en" />
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <style>
+#fan-result > div { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr [col-start]);
+    grid-template-rows: 1fr;
+    grid-gap: 10px 10px;
+    align-content: space-evenly;
+}
+    </style>
+</head>
+<body>
+
+<!-- CONTENT-START -->
+
+<main>
+    <article>
+            
+			<section id="fan-misery">
+				<h2>Rate your Mets-fan misery</h2>
+                <form id="fan-misery-form">
+				<p>From 0 (content) to 10 (couldn’t feel worse), rate your misery level as a Mets fan today.</p>
+				<div id="radios">
+					<label for="fan-0">
+						<input type="radio" name="fan-" id="fan-0" value="0" />
+						<span>0</span>
+					</label>
+					<label for="fan-1">
+						<input type="radio" name="fan-" id="fan-1" value="1" />
+						<span>1</span>
+					</label>
+					<label for="fan-2">
+						<input type="radio" name="fan-" id="fan-2" value="2" />
+						<span>2</span>
+					</label>
+					<label for="fan-3">
+						<input type="radio" name="fan-" id="fan-3" value="3" />
+						<span>3</span>
+					</label>
+					<label for="fan-4">
+						<input type="radio" name="fan-" id="fan-4" value="4" />
+						<span>4</span>
+					</label>
+					<label for="fan-5">
+						<input type="radio" name="fan-" id="fan-5" value="5" />
+						<span>5</span>
+					</label>
+					<label for="fan-6">
+						<input type="radio" name="fan-" id="fan-6" value="6" />
+						<span>6</span>
+					</label>
+					<label for="fan-7">
+						<input type="radio" name="fan-" id="fan-7" value="7" />
+						<span>7</span>
+					</label>
+					<label for="fan-8">
+						<input type="radio" name="fan-" id="fan-8" value="8" />
+						<span>8</span>
+					</label>
+					<label for="fan-9">
+						<input type="radio" name="fan-" id="fan-9" value="9" />
+						<span>9</span>
+					</label>
+					<label for="fan-10">
+						<input type="radio" name="fan-" id="fan-10" value="10" />
+						<span>10</span>
+					</label>
+				</div>
+				<div>
+					<button type="submit" id="fan-submit" onClick="fanm.btn_submit(this); return false;">Submit</button>
+				</div>
+                </form>
+				<div id="fan-result" class="hide">
+                    <div>
+                    <div>
+					<p>You rated your Mets fan misery:</p>
+					<i id="your-0" class="hide em em-heart_eyes"></i>
+					<i id="your-1" class="hide em em-grinning"></i>
+					<i id="your-2" class="hide em em-confused"></i>
+					<i id="your-3" class="hide em em-anguished"></i>
+					<i id="your-4" class="hide em em-astonished"></i>
+					<i id="your-5" class="hide em em-expressionless"></i>
+					<i id="your-6" class="hide em em-grimacing"></i>
+					<i id="your-7" class="hide em em-cry"></i>
+					<i id="your-8" class="hide em em-angry"></i>
+					<i id="your-9" class="hide em em-confounded"></i>
+					<i id="your-10" class="hide em em-hankey"></i>
+					<p><span class="meter-number" id="your-score"></span></p>
+                    </div>
+
+                    <div>
+					<p>Today’s average Mets-fan misery score:</p>
+					<i id="fan-0" class="hide em em-heart_eyes"></i>
+					<i id="fan-1" class="hide em em-grinning"></i>
+					<i id="fan-2" class="hide em em-confused"></i>
+					<i id="fan-3" class="hide em em-anguished"></i>
+					<i id="fan-4" class="hide em em-astonished"></i>
+					<i id="fan-5" class="hide em em-expressionless"></i>
+					<i id="fan-6" class="hide em em-grimacing"></i>
+					<i id="fan-7" class="hide em em-cry"></i>
+					<i id="fan-8" class="hide em em-angry"></i>
+					<i id="fan-9" class="hide em em-confounded"></i>
+					<i id="fan-10" class="hide em em-hankey"></i>
+					<p><span class="meter-number" id="fan-score"></span></p>
+                    </div>
+                    </div>
+				</div>
+
+
+<script>
+</script>
+
+    </article>
+</main>
+
+<!-- CONTENT-END -->
+<script onload="" src="js/app.js"></script>
+</body>
+</html>

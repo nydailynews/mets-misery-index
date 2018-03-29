@@ -135,7 +135,6 @@ var commentary = {
         utils.get_json('output/mets-commentary-' + year + '.json', commentary, this.on_load);
     }
 }
-commentary.init();
 
 // FAN MISERY
 // Handler for form request and response.
@@ -167,7 +166,7 @@ var fanm = {
 		document.getElementById('your-score').textContent = fanm.your_score;
 
 		// Show the relevant emojis
-		var emoji = document.getElementById('fan-' + s_int)
+		var emoji = document.getElementById('fanm-' + s_int)
 		emoji.classList.remove('hide');
 		emoji = document.getElementById('your-' + fanm.your_score)
 		emoji.classList.remove('hide');
@@ -200,10 +199,41 @@ var misery = {
         }
     },
     d: {},
+	ribbon_text: [
+	    ['SMOOTH'],
+        ['STEADY'],
+        ['ERM'],
+        ['HEY UM'],
+        ['UGH'],
+        ['UGH UGH'],
+        ['UGH UGH UGH'],
+        ['WHUH OH'],
+        ['OH NO'],
+        ['MAX PAIN'],
+        ['SO BAD'],
+        ['EVEN WORSE']
+	],
+	update_ribbon_text: function() {
+		// Update the text that goes on the ribbon depending on yesterday's misery.
+        var score = this.yesterday['misery-score'];
+        var text = misery.ribbon_text[score][0];
+		document.getElementById('photo-label').innerHTML = text.replace(' ', '&nbsp;');
+	},
+	update_meter: function() {
+        var score = this.yesterday['misery-score'];
+		document.getElementById('meter-number').textContent = score;
+        gauge.set(score);
+    },
+	update_photo: function() {
+        var score = this.yesterday['misery-score'];
+		document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
+    },
     build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
         var l = misery.d.recent.length;
         var ul = document.getElementById('recent');
+        var recent = misery.d.recent.reverse();
+
         for ( var i = 0; i < l; i ++ ) {
             var li = document.createElement('li');
             if ( i >= 5 ) li = utils.add_class(li, 'view-more hide');
@@ -213,8 +243,8 @@ var misery = {
                 more.innerHTML = '<a href="javascript:misery.view_more();">View more</a>';
                 ul.appendChild(more);
             }
-            var item = misery.d.recent[i]['event'];
-            if ( misery.d.recent[i]['url'] !== '' ) item = '<a href="' + misery.d.recent[i]['url'] + '">' + misery.d.recent[i]['event'] + '</a>';
+            var item = recent[i]['event'];
+            if ( recent[i]['url'] !== '' ) item = '<a href="' + recent[i]['url'] + '">' + recent[i]['event'] + '</a>';
 
             li.innerHTML = item;
             ul.appendChild(li);
@@ -282,17 +312,25 @@ var misery = {
     },
     on_load_recent: function() {
         // Process the recent misery
-        console.log(misery.data);
         misery.d.recent = misery.data;
-        misery.build_recent(misery.d.recent);
+        if ( !! document.getElementById('recent') ) misery.build_recent(misery.d.recent);
     },
     on_load_daily: function() {
         // Process the daily misery scores
-        console.log(misery.data);
-		misery.parse_time = d3.timeParse('%Y-%m-%d');
-		misery.format_time = d3.timeFormat('%B %e');
+        misery.latest = misery.data[misery.data.length - 1];
+        misery.yesterday = misery.data[misery.data.length - 2];
         misery.d.daily = misery.data;
-		misery.build_daily();
+
+		// Test for the existence of these elements before updating them.
+		// The "!!" makes the following statement evaluate to a boolean.
+        if ( !! document.getElementById('ribbon') ) misery.update_ribbon_text();
+        if ( !! document.getElementById('meter-number') ) misery.update_meter();
+        if ( !! document.getElementById('lead-photo') ) misery.update_photo();
+		if ( typeof d3 === 'object' ) {
+			misery.parse_time = d3.timeParse('%Y-%m-%d');
+			misery.format_time = d3.timeFormat('%B %e');
+			misery.build_daily();
+		}
     },
     init: function(year) {
         if ( year == null ) year = 2018;
@@ -301,7 +339,6 @@ var misery = {
         utils.get_json('output/mets-misery-daily-' + year + '.json', misery, this.on_load_daily);
     }
 }
-misery.init();
 
 // INJURY TRACKER
 // First init fires, then on_load.
@@ -345,7 +382,7 @@ var injuries = {
         }
     },
     on_load: function() {
-        injuries.build_table(injuries.data);
+        if ( !! document.getElementById('injury') ) injuries.build_table(injuries.data);
     },
     init: function(year) {
         if ( year == null ) year = 2018;
@@ -353,6 +390,5 @@ var injuries = {
         utils.get_json('output/mets-injured-list-' + year + '.json', injuries, this.on_load);
     }
 }
-injuries.init();
 
 var season_dates = ['2018-03-29', '2018-03-30', '2018-03-31', '2018-04-01', '2018-04-02', '2018-04-03', '2018-04-04', '2018-04-05', '2018-04-06', '2018-04-07', '2018-04-08', '2018-04-09', '2018-04-10', '2018-04-11', '2018-04-12', '2018-04-13', '2018-04-14', '2018-04-15', '2018-04-16', '2018-04-17', '2018-04-18', '2018-04-19', '2018-04-20', '2018-04-21', '2018-04-22', '2018-04-23', '2018-04-24', '2018-04-25', '2018-04-26', '2018-04-27', '2018-04-28', '2018-04-29', '2018-04-30', '2018-05-01', '2018-05-02', '2018-05-03', '2018-05-04', '2018-05-05', '2018-05-06', '2018-05-07', '2018-05-08', '2018-05-09', '2018-05-10', '2018-05-11', '2018-05-12', '2018-05-13', '2018-05-14', '2018-05-15', '2018-05-16', '2018-05-17', '2018-05-18', '2018-05-19', '2018-05-20', '2018-05-21', '2018-05-22', '2018-05-23', '2018-05-24', '2018-05-25', '2018-05-26', '2018-05-27', '2018-05-28', '2018-05-29', '2018-05-30', '2018-05-31', '2018-06-01', '2018-06-02', '2018-06-03', '2018-06-04', '2018-06-05', '2018-06-06', '2018-06-07', '2018-06-08', '2018-06-09', '2018-06-10', '2018-06-11', '2018-06-12', '2018-06-13', '2018-06-14', '2018-06-15', '2018-06-16', '2018-06-17', '2018-06-18', '2018-06-19', '2018-06-20', '2018-06-21', '2018-06-22', '2018-06-23', '2018-06-24', '2018-06-25', '2018-06-26', '2018-06-27', '2018-06-28', '2018-06-29', '2018-06-30', '2018-07-01', '2018-07-02', '2018-07-03', '2018-07-04', '2018-07-05', '2018-07-06', '2018-07-07', '2018-07-08', '2018-07-09', '2018-07-10', '2018-07-11', '2018-07-12', '2018-07-13', '2018-07-14', '2018-07-15', '2018-07-16', '2018-07-17', '2018-07-18', '2018-07-19', '2018-07-20', '2018-07-21', '2018-07-22', '2018-07-23', '2018-07-24', '2018-07-25', '2018-07-26', '2018-07-27', '2018-07-28', '2018-07-29', '2018-07-30', '2018-07-31', '2018-08-01', '2018-08-02', '2018-08-03', '2018-08-04', '2018-08-05', '2018-08-06', '2018-08-07', '2018-08-08', '2018-08-09', '2018-08-10', '2018-08-11', '2018-08-12', '2018-08-13', '2018-08-14', '2018-08-15', '2018-08-16', '2018-08-17', '2018-08-18', '2018-08-19', '2018-08-20', '2018-08-21', '2018-08-22', '2018-08-23', '2018-08-24', '2018-08-25', '2018-08-26', '2018-08-27', '2018-08-28', '2018-08-29', '2018-08-30', '2018-08-31', '2018-09-01', '2018-09-02', '2018-09-03', '2018-09-04', '2018-09-05', '2018-09-06', '2018-09-07', '2018-09-08', '2018-09-09', '2018-09-10', '2018-09-11', '2018-09-12', '2018-09-13', '2018-09-14', '2018-09-15', '2018-09-16', '2018-09-17', '2018-09-18', '2018-09-19', '2018-09-20', '2018-09-21', '2018-09-22', '2018-09-23', '2018-09-24', '2018-09-25', '2018-09-26', '2018-09-27', '2018-09-28', '2018-09-29', '2018-09-30'];

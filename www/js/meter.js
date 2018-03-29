@@ -34,4 +34,4 @@ var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
 gauge.maxValue = 10; // set max gauge value
 gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
 gauge.animationSpeed = 25; // set animation speed)
-gauge.set(5); // set actual value
+gauge.set(0); // set actual value

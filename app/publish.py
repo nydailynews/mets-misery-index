@@ -81,7 +81,7 @@ class Misery:
 
         # 2. Build a list of dates from the first day of the season until the latest day we have activity for or today, whichever is later.
         d = first_day
-        while d < last_day:
+        while d <= last_day:
             d_str = d.__str__()
             if d_str not in scores:
                 # 4. Then we loop through those dates again and prolong the misery.
