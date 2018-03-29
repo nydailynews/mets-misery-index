@@ -7,9 +7,11 @@ var utils = {
     ap_months: ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'],
     ap_date: function(date) {
         // Given a date such as "2018-02-03" return an AP style date.
+		var this_year = new Date().getFullYear();
         var parts = date.split('-')
         var day = +parts[2];
         var month = this.ap_months[+parts[1] - 1];
+		if ( this_year == +parts[0] ) return month + ' ' + day;
         return month + ' ' + day + ', ' + parts[0];
     },
     rando: function() {
@@ -364,6 +366,7 @@ var injuries = {
             var injury = data[i]['injury'];
             if ( data[i]['url'] !== '' ) injury = '<a href="' + data[i]['url'].trim() + '">' + data[i]['injury'] + '</a>';
             var start_date = utils.ap_date(data[i]['dl-start-date']);
+			if ( data[i]['dl-start-date'].trim().toLowerCase() == 'shruggie' ) start_date = '¯\\_(ツ)_/¯';
 
 			var dl_status = data[i]['dl-status'];
 			if ( dl_status.trim().toLowerCase() == 'shruggie' ) dl_status = '¯\\_(ツ)_/¯';
