@@ -1,4 +1,4 @@
-article h1, article h2, article h3, article h4, article h5 {
+article h1, article h2, article h3, article h4, article h5, article button {
     font-family: 'Open Sans Condensed', sans-serif;
     color: #333;
     text-rendering: optimizeLegibility;
@@ -379,8 +379,9 @@ article button {
     border: 1px solid black;
     background-color: #fec9b3;
     margin: 20px;
-    padding: 5px;
-    font: normal 12px 'Open Sans', sans-serif;
+    padding: 5px 10px;
+    font: bold 24px 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
 }
 
 #fan-result {
