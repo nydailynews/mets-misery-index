@@ -8,9 +8,11 @@ done
 
 if [ `whoami` = 'webadm' ]
 then
+	cp output/mets* /apps/project/misery-tracker/output/
 	scp output/mets-* prod:/apps/project/misery-index/output/
-	scp output/yankee-derby-2018.json prod:/apps/project/yankees-sluggers/output/
+	cp output/yankee* /apps/project/yankees-sluggers-tracker/output/
+	scp output/yankee-derby-2018.json prod:/apps/project/yankees-sluggers-tracker/output/
 else
 	scp output/mets-* qa:/apps/project/misery-index/output/
-	scp output/yankee-derby-2018.json qa:/apps/project/yankees-sluggers/output/
+	scp output/yankee-derby-2018.json qa:/apps/project/yankees-sluggers-tracker/output/
 fi
