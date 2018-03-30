@@ -1,17 +1,17 @@
-h1, h2, h3, h4, h5 {
+article h1, article h2, article h3, article h4, article h5 {
     font-family: 'Open Sans Condensed', sans-serif;
     color: #333;
     text-rendering: optimizeLegibility;
 }
 
-h1 {
+article h1 {
     font-size: 60px;
     line-height: 60px;
     text-transform: uppercase;
     margin-bottom: 15px;
 }
 
-h2 {
+article h2 {
     font-weight: bold;
     font-size: 25px;
     margin-bottom: 15px;
@@ -282,12 +282,12 @@ blockquote a {
     grid-row: 4;
 }
 
-table {
+article table {
         margin: auto;
         width: 450px;
 }
 
-thead {
+article thead {
         background-color: #002D72;
         text-transform: uppercase;
         border: 1px solid #808080;
@@ -297,13 +297,13 @@ thead {
         color: white;
 }
 
-th, td {
+article th, article td {
         height: 25px;
         vertical-align: middle;
 }
 
 
-tr:nth-child(even) {
+article tr:nth-child(even) {
         background-color: #dedede;
 }
 
@@ -375,7 +375,7 @@ input[type="radio"]:focus + span {
     color: #FFFFFF;
 }
 
-button {
+article button {
     border: 1px solid black;
     background-color: #fec9b3;
     margin: 20px;
@@ -475,7 +475,7 @@ rect {
         margin-bottom: 30px;
     }
 
-    h1 {
+    article h1 {
         font-size: 45px;
         line-height: 45px;
     }
