@@ -9,6 +9,7 @@ article h1 {
     line-height: 60px;
     text-transform: uppercase;
     margin-bottom: 15px;
+    letter-spacing: -1px;
 }
 
 article h2 {
