@@ -318,6 +318,8 @@ var misery = {
         // Process the recent misery
         misery.d.recent = misery.data;
         if ( !! document.getElementById('recent') ) misery.build_recent(misery.d.recent);
+        // The "!!" makes the following statement evaluate to a boolean.
+        if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.d.recent[misery.d.recent.length - 1]['date']);
     },
     on_load_daily: function() {
         // Process the daily misery scores
@@ -327,7 +329,6 @@ var misery = {
 
         // Test for the existence of these elements before updating them.
         // The "!!" makes the following statement evaluate to a boolean.
-        if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.latest['date']);
         if ( !! document.getElementById('ribbon') ) misery.update_ribbon_text();
         if ( !! document.getElementById('meter-number') ) misery.update_meter();
         if ( !! document.getElementById('lead-photo') ) misery.update_photo();
