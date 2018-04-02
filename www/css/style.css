@@ -207,13 +207,21 @@ article {
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
-    font: normal bold 60px 'Open Sans Condensed', sans-serif;
+    font: normal bold 60px/50px 'Open Sans Condensed', sans-serif;
     text-transform: uppercase;
     color: white;
     position: relative;
-    top: 70px;
+    top: 100px;
     left: -48px;
     width: 200px;
+	letter-spacing: -2px;
+	text-align: left;
+}
+#ribbon p#photo-label.tight-fit {
+	font-size: 50px;
+	line-height: 40px;
+    top: 70px;
+	height: auto;
 }
 
 

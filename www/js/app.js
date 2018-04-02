@@ -207,23 +207,27 @@ var misery = {
     d: {},
     ribbon_text: [
         ['AMAZIN’'],
-        ['YA GOTTA BELIEVE'],
+        ['YA GOTTA<br>BELIEVE'],
         ['MEH'],
         ['HEY, UM'],
         ['UGH'],
         ['OH NO'],
-        ['YOU’RE KILLIN’ ME, SMALLS'],
-        ['LIFE’S A PITCH'],
+        ['YOU’RE KILLIN’<br>ME, SMALLS'],
+        ['LIFE’S A<br>PITCH'],
         ['😭'],
         ['SO BAD'],
-        ['MAX PAIN'],
-        ['END THE SEASON NOW!']
+        ['MAX<br>PAIN'],
+        ['END THE<br>SEASON NOW!']
     ],
-    update_ribbon_text: function() {
+    update_ribbon_text: function(override) {
         // Update the text that goes on the ribbon depending on yesterday's misery.
         var score = this.yesterday['misery-score'];
+		if ( override != null ) score = override;
         var text = misery.ribbon_text[score][0];
-        document.getElementById('photo-label').innerHTML = text.replace(' ', '&nbsp;');
+		var el = document.getElementById('photo-label');
+		if ( text.indexOf('<br>') !== -1 ) el.setAttribute('class', 'tight-fit');
+        else el.setAttribute('class', '');
+        el.innerHTML = text.replace(/ /g, '&nbsp;');
     },
     update_meter: function() {
         var score = this.yesterday['misery-score'];
