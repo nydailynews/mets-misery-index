@@ -214,7 +214,7 @@ var misery = {
         ['OH NO'],
         ['YOU’RE KILLIN’<br>ME, SMALLS'],
         ['LIFE’S A<br>PITCH'],
-        ['😭'],
+        ['THERE’S NO 😭<br>IN BASEBALL'],
         ['SO BAD'],
         ['MAX<br>PAIN'],
         ['END THE<br>SEASON NOW!']
