@@ -46,7 +46,7 @@ p.byline {
     margin: 10px auto;
 }
 .deemphasize {
-    color: #999;
+    color: #777;
 }
 
 q {
@@ -314,7 +314,7 @@ tr.inactive td {
     color: #aaa;
 }
 
-#fan-misery p {
+#fan-misery p, #fan-misery legend {
     font: normal 14px 'Open Sans', sans-serif;
     line-height: 19px;
     text-align: left;
@@ -541,7 +541,7 @@ rect {
         display: none;
     }
 
-    #fan-misery p {
+    #fan-misery p, #fan-misery legend {
         margin-bottom: 5;
     }
 
@@ -620,7 +620,7 @@ rect {
         display: none;
     }
 
-    #fan-misery p {
+    #fan-misery p, #fan-misery legend {
         margin-bottom: 5;
     }
 
