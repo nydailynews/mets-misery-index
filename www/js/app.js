@@ -110,7 +110,10 @@ var commentary = {
         var q = document.createElement('q');
         q.textContent = record['quote'];
         var s = document.createElement('span');
-        s.textContent = record['source'];
+        
+        // If we have a quote-url, we make this a link.
+        if ( record['quote-url'] !== '' ) s.innerHTML = '<a href="' + record['quote-url'].trim() + '">' + record['source'] + '</a>';
+        else s.textContent = record['source'];
 
         p.appendChild(q);
         p.appendChild(s);
