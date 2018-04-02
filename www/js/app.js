@@ -221,20 +221,25 @@ var misery = {
     ],
     update_ribbon_text: function(override) {
         // Update the text that goes on the ribbon depending on yesterday's misery.
+        // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
 		if ( override != null ) score = override;
         var text = misery.ribbon_text[score][0];
 		var el = document.getElementById('photo-label');
+
 		if ( text.indexOf('<br>') !== -1 ) el.setAttribute('class', 'tight-fit');
         else el.setAttribute('class', '');
+
         el.innerHTML = text.replace(/ /g, '&nbsp;');
     },
     update_meter: function() {
+        // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
         document.getElementById('meter-number').textContent = score;
         gauge.set(score);
     },
     update_photo: function() {
+        // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
         document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
     },
@@ -351,6 +356,7 @@ var misery = {
         if ( year == null ) year = 2018;
         this.season_dates = season_dates_all;
         //this.season_dates = season_dates_all.splice(0, 30);
+        
         // get_json takes three params: filepath, the object that's calling it, and a callback.
         utils.get_json('output/mets-misery-' + year + '.json', misery, this.on_load_recent);
         utils.get_json('output/mets-misery-daily-' + year + '.json', misery, this.on_load_daily);
