@@ -178,6 +178,7 @@ var fanm = {
         
         // Show the div
         document.getElementById('fan-result').setAttribute('class', '');    
+        document.getElementById('fan-result').setAttribute('role', 'alert');    
 
     },
     btn_submit: function() {
