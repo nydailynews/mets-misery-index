@@ -266,6 +266,7 @@ var misery = {
     build_daily: function() {
         // Build out the daily misery chart
         
+        var data = misery.d.daily.slice(0, misery.d.daily.length - 1);
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
         this.c.width = 1000 - margin.left - margin.right;
         this.c.height = 200 - margin.top - margin.bottom;
@@ -308,7 +309,7 @@ var misery = {
             .text('Misery');
 
         chart.selectAll("bar")
-            .data(misery.d.daily)
+            .data(data)
             .enter().append("rect")
             .attr("class", "bar")
             .attr("x", function(d) { return x(misery.format_time(misery.parse_time(d['date']))); })
@@ -322,7 +323,7 @@ var misery = {
         misery.d.recent = misery.data;
         if ( !! document.getElementById('recent') ) misery.build_recent(misery.d.recent);
         // The "!!" makes the following statement evaluate to a boolean.
-        if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.d.recent[misery.d.recent.length - 1]['date']);
+        if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.d.recent[0]['date']);
     },
     on_load_daily: function() {
         // Process the daily misery scores

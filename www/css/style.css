@@ -271,7 +271,7 @@ blockquote span:before {
     content: "\2014 ";
 }
 
-blockquote a {
+blockquote > a {
     color: #333;
 }
 
