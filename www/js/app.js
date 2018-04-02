@@ -370,11 +370,11 @@ var injuries = {
     build_table: function(data) {
         // Take records in the data array and add them to a table.
         var l = data.length;
-        var t = document.getElementById('injury');
+        var t = document.querySelector('#injury tbody');
         for ( var i = 0; i < l; i ++ ) {
             // Put together the text and the markup we need to populate a table row.
             var injury = data[i]['injury'];
-            if ( data[i]['url'] !== '' ) injury = '<a href="' + data[i]['url'].trim() + '">' + data[i]['injury'] + '</a>';
+            if ( data[i]['url'] !== '' ) injury = '<a target="_blank" href="' + data[i]['url'].trim() + '">' + data[i]['injury'] + '</a>';
             var start_date = utils.ap_date(data[i]['dl-start-date']);
             if ( data[i]['dl-start-date'].trim().toLowerCase() == 'shruggie' ) start_date = '¯\\_(ツ)_/¯';
 
