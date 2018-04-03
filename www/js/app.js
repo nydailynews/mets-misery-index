@@ -137,7 +137,7 @@ var commentary = {
     init: function(year) {
         if ( year == null ) year = 2018;
         // get_json takes three params: filepath, the object that's calling it, and a callback.
-        utils.get_json('output/mets-commentary-' + year + '.json', commentary, this.on_load);
+        utils.get_json('output/mets-commentary-' + year + '.json?' + utils.rando(), commentary, this.on_load);
     }
 }
 
@@ -358,8 +358,8 @@ var misery = {
         //this.season_dates = season_dates_all.splice(0, 30);
         
         // get_json takes three params: filepath, the object that's calling it, and a callback.
-        utils.get_json('output/mets-misery-' + year + '.json', misery, this.on_load_recent);
-        utils.get_json('output/mets-misery-daily-' + year + '.json', misery, this.on_load_daily);
+        utils.get_json('output/mets-misery-' + year + '.json?' + utils.rando(), misery, this.on_load_recent);
+        utils.get_json('output/mets-misery-daily-' + year + '.json?' + utils.rando(), misery, this.on_load_daily);
     }
 }
 
@@ -411,7 +411,7 @@ var injuries = {
     init: function(year) {
         if ( year == null ) year = 2018;
         // get_json takes three params: filepath, the object that's calling it, and a callback.
-        utils.get_json('output/mets-injured-list-' + year + '.json', injuries, this.on_load);
+        utils.get_json('output/mets-injured-list-' + year + '.json?' + utils.rando(), injuries, this.on_load);
     }
 }
 
