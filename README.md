@@ -1,4 +1,4 @@
-# Mets Misery Index
+# [Mets Misery Index](http://interactive.nydailynews.com/project/mets-misery-index/)
 
 ## Usage
 
