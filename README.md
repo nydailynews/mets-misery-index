@@ -1,4 +1,6 @@
-# Mets Misery Index
+# [Mets Misery Index](http://interactive.nydailynews.com/project/mets-misery-index/)
+
+Inspired by and based on the [Denver Post’s Rockies Misery Index](https://github.com/denverpost/misery-index)
 
 ## Usage
 
