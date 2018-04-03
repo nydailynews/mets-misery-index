@@ -20,7 +20,7 @@ article h2 {
     text-align: left;
 }
 
-p.description {
+p.description, figcaption {
     font-family: 'PT Serif', serif;
     font-size: 20px;
     line-height: 28px;
