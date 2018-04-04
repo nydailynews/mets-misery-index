@@ -261,7 +261,7 @@ var misery = {
             var ap_date = utils.ap_date(recent[i]['date']);
             if ( ap_date == 'March 28' ) ap_date = 'Preseason';
             var item = ap_date + ': ' + recent[i]['event'];
-            if ( recent[i]['url'] !== '' ) item = ap_date + ': <a href="' + recent[i]['url'] + '">' + recent[i]['event'] + '</a>';
+            if ( recent[i]['url'] !== '' ) item = ap_date + ': <a target="_blank" href="' + recent[i]['url'] + '">' + recent[i]['event'] + '</a>';
 
             li.innerHTML = item;
             ul.appendChild(li);
