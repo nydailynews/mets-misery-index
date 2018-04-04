@@ -243,9 +243,11 @@ var misery = {
         var score = this.yesterday['misery-score'];
         document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
     },
-    build_recent: function() {
+    build_recent: function(limit) {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
+        // If limit is set, only publish that many headlines.
         var l = misery.d.recent.length;
+        if ( limit != null ) l = limit;
         var ul = document.getElementById('recent');
         var recent = misery.d.recent.reverse();
 

@@ -42,8 +42,25 @@
     <meta name="localeLanguage" content="en" />
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/emoji.css">
 
     <style>
+#misery-index > div { 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr [col-start]);
+    grid-template-rows: 1fr;
+    grid-gap: 10px 10px;
+    align-content: space-evenly;
+}
+#misery-index > div > div:nth-child(2) { 
+	grid-column: 2/4;
+}
+h3 {
+	text-transform: uppercase;
+	text-align: left;
+	margin: 0;
+}
+#fan-misery { margin-top: 0; }
     </style>
 </head>
 <body>
@@ -52,22 +69,45 @@
 
 <main>
     <article>
-            <section id="injury-tracker">
-				<h2>Mets misery index</h2>
-				<table id="injury">
-					<thead>
-						<th>Player</th>
-						<th>Position</th>
-						<th>Injury</th>
-						<th>DL stint</th>
-						<th>DL start</th>
-					</thead>
-				</table>
+            <section id="misery-index" style="width: 500px;">
+                <h2><a target="_top" href="http://interactive.nydailynews.com/project/mets-misery-index/">Mets misery index</a></h2>
+                <div>
+                    <div>
+                        <h3>Mets Misery Score</h3>
+                        <!--
+							<i id="your-0" class="hide em em-heart_eyes"></i>
+							<i id="your-1" class="hide em em-grinning"></i>
+							<i id="your-2" class="hide em em-confused"></i>
+							<i id="your-3" class="hide em em-anguished"></i>
+							<i id="your-4" class="hide em em-astonished"></i>
+							<i id="your-5" class="hide em em-expressionless"></i>
+							<i id="your-6" class="hide em em-grimacing"></i>
+							<i id="your-7" class="hide em em-cry"></i>
+							<i id="your-8" class="hide em em-angry"></i>
+							<i id="your-9" class="hide em em-confounded"></i>
+							<i id="your-10" class="hide em em-hankey"></i>
+							<p><span class="meter-number" id="your-score"></span></p>
+                        -->
+                        <div id="fan-misery" class="" role="alert">
+                    <i style="font-size: 35px;" id="your-2" class="em em-confused"></i>
+                    <p><span style="color: black;" class="meter-number" id="your-score">2</span></p>
+
+						</div>
+                    </div>
+                    <div>
+                        <h3>Recent Misery</h3>
+                        <ul id="recent">
+						</ul>
+                        <ul id="more">
+							<li class="view-more-link"><a target="_top" href="http://interactive.nydailynews.com/project/mets-misery-index/#recent-news">All the misery</a></li>
+						</ul>
+                    </div>
+                </div>
 			</section>
     </article>
 </main>
 
 <!-- CONTENT-END -->
-<script onload="" src="js/app.js"></script>
+<script onload="misery.init();" src="js/app.js"></script>
 </body>
 </html>
