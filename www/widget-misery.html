@@ -45,6 +45,9 @@
     <link rel="stylesheet" href="css/emoji.css">
 
     <style>
+article h2 {
+	margin-bottom: 0;
+}
 #misery-index > div { 
     display: grid;
     grid-template-columns: repeat(3, 1fr [col-start]);
@@ -108,6 +111,9 @@ h3 {
 </main>
 
 <!-- CONTENT-END -->
-<script onload="misery.init();" src="js/app.js"></script>
+<script onload="misery.init(); misery.build_recent(1);" src="js/app.js"></script>
+<script>
+//misery.build_recent(1);
+</script>
 </body>
 </html>

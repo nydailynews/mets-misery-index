@@ -395,7 +395,7 @@ var injuries = {
             if ( dl_status.trim().toLowerCase() == 'shruggie' ) dl_status = '¯\\_(ツ)_/¯';
 
             var tr = document.createElement('tr');
-            if ( dl_status.trim() === '' ) tr.setAttribute('class', 'inactive');
+            if ( data[i]['dl-stint-ended'].trim() !== '' ) tr.setAttribute('class', 'inactive');
             var markup = '\n\
                         <td>' + data[i]['player-name'] + '</td>\n\
                         <td>' + data[i]['player-position'] + '</td>\n\
