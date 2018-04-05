@@ -122,7 +122,6 @@ var commentary = {
     },
     load_tweet: function(record) {
         // Given a tweet url, populate the color commentary section and load the twitter javascript.
-        console.log(this);
         document.getElementById('tweet-link').setAttribute('href', record['twitter-url']);
         utils.add_js('https://platform.twitter.com/widgets.js', {});
         return true;
@@ -159,7 +158,7 @@ var fanm = {
     form_results: function() {
         // Remove the form, display the results.
 
-        console.log(fanm.data);
+        //console.log(fanm.data);
         // Remove the form
         el = document.getElementById('fan-misery-form');
         el.parentNode.removeChild(el);
@@ -243,11 +242,13 @@ var misery = {
         var score = this.yesterday['misery-score'];
         document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
     },
-    build_recent: function(limit) {
+    build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
         // If limit is set, only publish that many headlines.
+		if ( typeof misery.d.recent === 'undefined' ) return false;
+
         var l = misery.d.recent.length;
-        if ( limit != null ) l = limit;
+        if ( typeof misery.config.recent_limit !== 'undefined' ) l = misery.config.recent_limit;
         var ul = document.getElementById('recent');
         var recent = misery.d.recent.reverse();
 
@@ -333,7 +334,7 @@ var misery = {
     on_load_recent: function() {
         // Process the recent misery
         misery.d.recent = misery.data;
-        if ( !! document.getElementById('recent') ) misery.build_recent(misery.d.recent);
+        if ( !! document.getElementById('recent') ) misery.build_recent();
         // The "!!" makes the following statement evaluate to a boolean.
         if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.d.recent[0]['date']);
     },
@@ -357,6 +358,7 @@ var misery = {
     init: function(year) {
         if ( year == null ) year = 2018;
         this.season_dates = season_dates_all;
+		if ( typeof m_config !== 'undefined' ) misery.update_config(m_config);
         //this.season_dates = season_dates_all.splice(0, 30);
         
         // get_json takes three params: filepath, the object that's calling it, and a callback.
