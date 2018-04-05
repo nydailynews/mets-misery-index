@@ -357,13 +357,13 @@ var misery = {
     },
     init: function(year) {
         if ( year == null ) year = 2018;
-        this.season_dates = season_dates_all;
+        misery.season_dates = season_dates_all;
         if ( typeof m_config !== 'undefined' ) misery.update_config(m_config);
         //this.season_dates = season_dates_all.splice(0, 30);
         
         // get_json takes three params: filepath, the object that's calling it, and a callback.
-        utils.get_json('output/mets-misery-' + year + '.json?' + utils.rando(), misery, this.on_load_recent);
-        utils.get_json('output/mets-misery-daily-' + year + '.json?' + utils.rando(), misery, this.on_load_daily);
+        utils.get_json('output/mets-misery-' + year + '.json?' + utils.rando(), misery, misery.on_load_recent);
+        utils.get_json('output/mets-misery-daily-' + year + '.json?' + utils.rando(), misery, misery.on_load_daily);
     }
 }
 
