@@ -155,6 +155,15 @@ var fanm = {
             }
         }
     },
+    update_score: function(id, score) {
+        // Update the score element.
+        document.getElementById(id).textContent = score;
+    },
+    show_emoji: function(id, score) {
+        // Show the relevant emoji
+        var emoji = document.getElementById(id + score)
+        emoji.classList.remove('hide');
+    },
     form_results: function() {
         // Remove the form, display the results.
 
@@ -166,19 +175,17 @@ var fanm = {
         // Put together then display the results
         var s = Math.round(fanm.data.score*10)/10;
         var s_int = Math.floor(s);
-        document.getElementById('fan-score').textContent = s;
-        document.getElementById('your-score').textContent = fanm.your_score;
+
+        fanm.update_score('fan-score', s);
+        fanm.update_score('your-score', fanm.your_score);
 
         // Show the relevant emojis
-        var emoji = document.getElementById('fanm-' + s_int)
-        emoji.classList.remove('hide');
-        emoji = document.getElementById('your-' + fanm.your_score)
-        emoji.classList.remove('hide');
+        fanm.show_emoji('fanm-', s_int);
+        fanm.show_emoji('your-', fanm.your_score);
         
         // Show the div
         document.getElementById('fan-result').setAttribute('class', '');    
         document.getElementById('fan-result').setAttribute('role', 'alert');    
-
     },
     btn_submit: function() {
         // Form handler for fan misery vote
@@ -241,6 +248,12 @@ var misery = {
         // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
         document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
+    },
+    update_widget: function() {
+        // The widget misery score works and looks like the fan misery score.
+        var score = this.yesterday['misery-score'];
+        fanm.update_score('staff-score', score);
+        fanm.show_emoji('staff-', score);
     },
     build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
@@ -343,6 +356,8 @@ var misery = {
         misery.latest = misery.data[misery.data.length - 1];
         misery.yesterday = misery.data[misery.data.length - 2];
         misery.d.daily = misery.data;
+
+        if ( typeof misery.config.is_widget !== 'undefined' ) misery.update_widget();
 
         // Test for the existence of these elements before updating them.
         // The "!!" makes the following statement evaluate to a boolean.

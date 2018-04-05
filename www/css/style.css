@@ -323,17 +323,21 @@ tr.inactive td {
     color: #aaa;
 }
 
-#fan-misery p, #fan-misery legend {
+#staff-misery p,
+#fan-misery p,
+#fan-misery legend {
     font: normal 14px 'Open Sans', sans-serif;
     line-height: 19px;
     text-align: left;
 }
 
+#staff-misery .em,
 #fan-misery .em {
     float: left;
     margin-right: .3em;
     margin-top: 10px;
 }
+#staff-misery #staff-score,
 #fan-misery #your-score,
 #fan-misery #fan-score {
     color: #333;
@@ -444,7 +448,7 @@ article ul {
     list-style-type: none;
     text-align: right;
 }
-#fan-result .hide, .hide {
+#fan-result .hide, #staff-misery .hide, .hide {
     display: none;
 }
 
