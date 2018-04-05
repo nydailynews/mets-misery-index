@@ -44,6 +44,27 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+body {
+    font: 12px/15px "Open Sans",sans-serif;
+    color: #333;
+}
+article table {
+    width: 100%;
+}
+#injury-tracker {
+    margin: 0;
+}
+#injury-tracker h2 {
+    margin-top: 0;
+}
+#table-wrapper {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+#injury-tracker th:nth-child(3),
+#injury-tracker td:nth-child(3) {
+    display: table-cell;
+}
     </style>
 </head>
 <body>
@@ -52,8 +73,9 @@
 
 <main>
     <article>
-            <section id="injury-tracker">
-                <h2><a target="_top" href="http://interactive.nydailynews.com/project/mets-misery-index/">Mets injury tracker</a></h2>
+        <section id="injury-tracker">
+            <h2><a target="_top" href="http://interactive.nydailynews.com/project/mets-misery-index/">Mets injury tracker</a></h2>
+            <div id="table-wrapper">
 				<table id="injury">
 					<thead>
 						<th>Player</th>
@@ -62,12 +84,15 @@
 						<th>DL stint</th>
 						<th>DL start</th>
 					</thead>
+					<tbody>
+					</tbody>
 				</table>
-			</section>
+            </div>
+        </section>
     </article>
 </main>
 
 <!-- CONTENT-END -->
-<script onload="injuries.init();" src="js/app.js"></script>
+<script onload="window.setTimeout(injuries.init, 100);" src="js/app.js"></script>
 </body>
 </html>

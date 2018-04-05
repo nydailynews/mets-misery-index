@@ -626,6 +626,7 @@ rect {
         width: 100%;
     }
 
+    /*
     #injury-tracker th:nth-child(2), th:nth-child(3) {
         display: none;
     }
@@ -633,6 +634,7 @@ rect {
     #injury-tracker td:nth-child(2), td:nth-child(3) {
         display: none;
     }
+    */
 
     #fan-misery p, #fan-misery legend {
         margin-bottom: 5;
