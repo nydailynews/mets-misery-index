@@ -411,7 +411,6 @@ var injuries = {
         if ( !! document.getElementById('injury') ) injuries.build_table(injuries.data);
     },
     init: function(year) {
-		console.log("ASDASDASDSA");
         if ( year == null ) year = 2018;
         // get_json takes three params: filepath, the object that's calling it, and a callback.
         utils.get_json('output/mets-injured-list-' + year + '.json?' + utils.rando(), injuries, injuries.on_load);
