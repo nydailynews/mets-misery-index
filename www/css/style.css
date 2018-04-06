@@ -1,5 +1,6 @@
 article h1, article h2, article h3, article h4, article h5, article button {
     font-family: 'Open Sans Condensed', sans-serif;
+    font-display: optional;
     color: #333;
     text-rendering: optimizeLegibility;
 }
@@ -22,12 +23,14 @@ article h2 {
 
 p.description, figcaption {
     font-family: 'PT Serif', serif;
+    font-display: optional;
     font-size: 20px;
     line-height: 28px;
 }
 
 p.byline {
     font: normal 14px "Open Sans", sans-serif;
+    font-display: optional;
     width: 90%;
     margin: auto;
     text-align: center;
@@ -301,6 +304,7 @@ article thead {
         text-transform: uppercase;
         border: 1px solid #808080;
         font-family: 'Open Sans', sans-serif;
+        font-display: optional;
         padding: 7px 0;
         vertical-align: middle;
         color: white;
@@ -373,6 +377,7 @@ input[type="radio"] + span:hover {
 input[type="radio"] + span {
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
+    font-display: optional;
     background-color: #002D72;
     color: #FFFFFF;
     border-radius: 50%;
