@@ -11,7 +11,9 @@ then
 	cp output/mets* /apps/project/mets-misery-index/output/
 	scp output/mets-* prod:/apps/project/mets-misery-index/output/
 	cp output/yankee* /apps/project/yankees-sluggers-tracker/output/
+	cp output/yankee* /apps/project/yankees-injury-tracker/output/
 	scp output/yankee-derby-2018.json prod:/apps/project/yankees-sluggers-tracker/output/
+	scp output/yankees-injured-list-2018.json prod:/apps/project/yankees-injury-tracker/output/
 else
 	scp output/mets-* qa:/apps/project/mets-misery-index/output/
 	scp output/yankee-derby-2018.json qa:/apps/project/yankees-sluggers-tracker/output/
