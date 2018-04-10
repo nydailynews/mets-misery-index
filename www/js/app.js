@@ -186,6 +186,13 @@ var fanm = {
         // Show the div
         document.getElementById('fan-result').setAttribute('class', '');    
         document.getElementById('fan-result').setAttribute('role', 'alert');    
+
+		// New ads, a pv.
+        if ( typeof googletag !== 'undefined' ) googletag.pubads().refresh();
+        if ( typeof PARSELY !== 'undefined' ) PARSELY.beacon.trackPageView({ url: document.location.href, urlref: document.location.href, js: 1 });
+        // Let the parent frame know, if it's listening
+        window.parent.postMessage({'vote': 1}, '*');
+
     },
     btn_submit: function() {
         // Form handler for fan misery vote
