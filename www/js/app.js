@@ -404,8 +404,13 @@ var injuries = {
             }
         }
     },
-    build_table: function(data) {
+    build_table: function(data_raw) {
         // Take records in the data array and add them to a table.
+        var l = data_raw.length;
+        var t = document.querySelector('#injury tbody');
+        data_raw.sort(function(a,b) { return +a['dl-start-date'].replace(/-/g, '') - b['dl-start-date'].replace(/-/g, ''); });
+        var data = data_raw.reverse();
+
         var l = data.length;
         var t = document.querySelector('#injury tbody');
         for ( var i = 0; i < l; i ++ ) {
