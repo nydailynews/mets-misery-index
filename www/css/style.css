@@ -21,11 +21,18 @@ article h2 {
     text-align: left;
 }
 
+p.description {
+    text-align: left;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 12px;
+}
+
 p.description, figcaption {
     font-family: 'PT Serif', serif;
     font-display: optional;
     font-size: 20px;
-    line-height: 28px;
+    line-height: 30px;
 }
 
 p.byline {
@@ -297,6 +304,7 @@ blockquote > a {
 article table {
         margin: auto;
         width: 450px;
+        margin-bottom: 30px;
 }
 
 article thead {
