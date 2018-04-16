@@ -9,6 +9,23 @@ from collections import OrderedDict
 import json
 import doctest
 
+class SheetDiff:
+    """ Tell us if there's a difference between the sheet we're about to publish
+        and the previous json file for that sheet that we wrote.
+        """
+
+    def __init__(self, prev):
+        import filecmp
+        self.prev = prev
+
+    def check_diff(self, new)
+        """ Given the path for the new json file, compare its contents against
+            the previous.
+            """
+        shallow_compare = False
+        if filecmp.cmp(self.prev, new, shallow_compare) == True:
+            return ''
+
 class Sheet:
     """ The interface for querying Google Sheets.
         >>> sheet = Sheet('test-sheet', 'worksheet-name')
@@ -137,6 +154,7 @@ class Sheet:
         rows = self.rows
         keys = rows[0]
         fn = {
+            'json_check': open('%s/output/%s-check.json' % (self.directory, self.filename), 'w'),
             'json': open('%s/output/%s.json' % (self.directory, self.filename), 'w'),
             'csv': open('%s/output/%s.csv' % (self.directory, self.filename), 'w')
         }
@@ -152,6 +170,11 @@ class Sheet:
             records.append(record)
 
         if records:
+            # Dump the record in the check file so we can diff it.
+            json.dump(records, fn['json_check'])
+            diff = SheetDiff('%s/output/%s.json' % (self.directory, self.filename))
+            diff.check_diff('%s/output/%s-check.json' % (self.directory, self.filename))
+
             json.dump(records, fn['json'])
 
         return True
