@@ -408,7 +408,10 @@ var injuries = {
         // Take records in the data array and add them to a table.
         var l = data_raw.length;
         var t = document.querySelector('#injury tbody');
-        data_raw.sort(function(a,b) { return +a['dl-start-date'].replace(/-/g, '') - b['dl-start-date'].replace(/-/g, ''); });
+        data_raw.sort(function(a,b) { 
+			// If dl-stint-ended is 1, it goes at the end.
+			if ( +b['dl-stint-ended'] === 1 ) return 9999;
+			return +a['dl-start-date'].replace(/-/g, '') - b['dl-start-date'].replace(/-/g, ''); });
         var data = data_raw.reverse();
 
         var l = data.length;
