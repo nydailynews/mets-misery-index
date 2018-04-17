@@ -241,7 +241,7 @@ var misery = {
         var el = document.getElementById('photo-label');
 
         if ( text.indexOf('<br>') !== -1 ) el.setAttribute('class', 'tight-fit');
-        else el.setAttribute('class', '');
+        else el.setAttribute('class', 'centered');
 
         el.innerHTML = text.replace(/ /g, '&nbsp;');
     },

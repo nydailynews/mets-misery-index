@@ -227,11 +227,17 @@ article {
     letter-spacing: -1px;
     text-align: left;
 }
+
 #ribbon p#photo-label.tight-fit {
     font-size: 50px;
     line-height: 40px;
     top: 70px;
     height: auto;
+}
+
+#ribbon p#photo-label.centered {
+    text-align: center;
+    top: 95px;
 }
 
 
