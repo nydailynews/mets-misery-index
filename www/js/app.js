@@ -410,6 +410,7 @@ var injuries = {
         var t = document.querySelector('#injury tbody');
         data_raw.sort(function(a,b) { 
 			// If dl-stint-ended is not blank, it goes at the end.
+            if ( a['dl-stint-ended'] !== '' ) return -9999;
 			if ( b['dl-stint-ended'] !== '' ) return 9999;
 			return +a['dl-start-date'].replace(/-/g, '') - b['dl-start-date'].replace(/-/g, ''); });
         var data = data_raw.reverse();
