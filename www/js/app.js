@@ -250,10 +250,14 @@ var misery = {
     update_meter: function() {
         // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
-        var score_bucket = score;
-        if ( score > 10 ) score_bucket = 11;
-        document.getElementById('meter-number').textContent = score;
-        gauge.set(score_bucket);
+        if ( score > 10 ) {
+            var el = document.getElementById('meter');
+            el.innerHTML = '<img src="http://interactive.nydailynews.com/project/mets-misery-index/img/broken-meter.jpg" alt="">';
+        }
+        else {
+            document.getElementById('meter-number').textContent = score;
+            gauge.set(score);
+        }
     },
     update_photo: function() {
         // We do yesterday's misery because today's not finished yet.
