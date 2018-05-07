@@ -237,7 +237,9 @@ var misery = {
         // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
         if ( override != null ) score = override;
-        var text = misery.ribbon_text[score][0];
+        var score_bucket = score;
+        if ( score > 10 ) score_bucket = 11;
+        var text = misery.ribbon_text[score_bucket][0];
         var el = document.getElementById('photo-label');
 
         if ( text.indexOf('<br>') !== -1 ) el.setAttribute('class', 'tight-fit');
@@ -248,19 +250,25 @@ var misery = {
     update_meter: function() {
         // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
+        var score_bucket = score;
+        if ( score > 10 ) score_bucket = 11;
         document.getElementById('meter-number').textContent = score;
-        gauge.set(score);
+        gauge.set(score_bucket);
     },
     update_photo: function() {
         // We do yesterday's misery because today's not finished yet.
         var score = this.yesterday['misery-score'];
-        document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score + '-1.jpg');
+        var score_bucket = score;
+        if ( score > 10 ) score_bucket = 10;
+        document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score_bucket + '-1.jpg');
     },
     update_widget: function() {
         // The widget misery score works and looks like the fan misery score.
         var score = this.yesterday['misery-score'];
+        var score_bucket = score;
+        if ( score > 10 ) score_bucket = 11;
         fanm.update_score('staff-score', score);
-        fanm.show_emoji('staff-', score);
+        fanm.show_emoji('staff-', score_bucket);
     },
     build_recent: function() {
         // Populate the recent misery list, add the functionality for viewing the rest of it.
