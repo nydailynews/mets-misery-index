@@ -87,6 +87,67 @@ var utils = {
     },
 }
 
+// LATEST GRAF
+// This object handles the graf that tells us the latest game info
+var lt = {
+    config: {
+    },
+    update_config: function(config) {
+        // Take an external config object and update this config object.
+        for ( var key in config )
+        {
+            if ( config.hasOwnProperty(key) )
+            {
+                this.config[key] = config[key];
+            }
+        }
+    },
+    publish_latest: function(rec) {
+        // Take a game record object and put it on the page.
+        var parent = document.getElementById('tweet');
+        var el = document.createElement('section');
+        el.id = 'gamer';
+        var blurb = lt.write_blurb(rec);
+        el.innerHTML = '<h2 style="margin-top:20px;">Yesterday’s Mets Game</h2>\n <p class="description">' + blurb + '</p>';
+        parent.appendChild(el);
+    },
+    write_blurb: function(rec) {
+        // Turn a game record object into a paragraph.
+        // An object looks something like this:
+        // date: "2018-05-08"
+        // gamer-headline: "Yankees move into tie atop AL East with 3-2 win over Red Sox"
+        // gamer-url: "http://www.nydailynews.com/sports/baseball/yankees/yankees-move-tie-atop-al-east-3-2-win-red-sox-article-1.3979129"
+        // games-back-division: ""
+        // home-game: "1"
+        // in-division: "1"
+        // opponent-score: "2"
+        // record-last-ten: ""
+        // streak: "7"
+        // total-losses: "10"
+        // total-wins: "25"
+        // win: "1"
+        // yankees-score: "3"
+        var html = 'Mets fall ' + rec['opponent-score'] + '-' + rec['mets-score'] + '.';
+        if ( +rec['mets-score'] > +rec['opponent-score'] ) html = 'Mets win ' + rec['mets-score'] + '-' + rec['opponent-score'] + '.';
+        if ( rec['gamer-url'] != '' ) html += ' Game story: <a href="' + rec['gamer-url'] + '">' + rec['gamer-headline'] + '</a>.'; 
+        return html;
+    },
+    on_load: function() {
+        // See if we have a record for today's or yesterday's game, and if we do, add it to the interactive.
+        var yesterday = misery.yesterday['date'];
+        var latest = misery.latest['date'];
+        var l = lt.data.length;
+        for ( var i = 0; i < l; i ++ ) {
+            if ( yesterday == lt.data[i]['date'] ) record = lt.data[i];
+        }
+        if ( record['opponent-score'] != '' ) lt.publish_latest(record);
+    },
+    init: function(year) {
+        if ( year == null ) year = 2018;
+        utils.get_json('../../feeds/json/mets-games-' + year + '.json', lt, lt.on_load);
+    }
+}
+
 // COLOR COMMENTARY
 // First init fires, then on_load.
 var commentary = {
@@ -234,7 +295,7 @@ var misery = {
     ],
     update_ribbon_text: function(override) {
         // Update the text that goes on the ribbon depending on yesterday's misery.
-        // We do yesterday's misery because today's not finished yet.
+        // We do yesterday's misery because we don't know precisely when today's misery will land / if it will land.
         var score = this.yesterday['misery-score'];
         if ( override != null ) score = override;
         var score_bucket = score;
@@ -248,7 +309,7 @@ var misery = {
         el.innerHTML = text.replace(/ /g, '&nbsp;');
     },
     update_meter: function() {
-        // We do yesterday's misery because today's not finished yet.
+        // We do yesterday's misery because we don't know precisely when today's misery will land / if it will land.
         var score = this.yesterday['misery-score'];
         if ( score > 10 ) {
             var el = document.getElementById('meter');
@@ -260,7 +321,7 @@ var misery = {
         }
     },
     update_photo: function() {
-        // We do yesterday's misery because today's not finished yet.
+        // We do yesterday's misery because we don't know precisely when today's misery will land / if it will land.
         var score = this.yesterday['misery-score'];
         var score_bucket = score;
         if ( score > 10 ) score_bucket = 10;
