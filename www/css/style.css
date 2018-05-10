@@ -120,9 +120,9 @@ article {
 
 #ribbon {
     width: 180px;
-    height: 280px;
+    height: 320px;
     position: relative;
-    left: 10%;
+    left: 12%;
     top: -60px;
     overflow: hidden;
     -ms-grid-column: 1;
@@ -156,17 +156,17 @@ article {
 #ribbon .container {
     position: relative;
     width: 100px;
-    height: 280px;
+    height: 320px;
     overflow: hidden;
     margin: 0 auto;
 }
 
 #ribbon .base {
-    height: 200px;
+    height: 240px;
     width: 100px;
     background: #002D72;
     position: relative;
-    z-index: 2;
+    z-index: 2
 }
 
 #ribbon .base:after {
@@ -175,7 +175,7 @@ article {
     top: 0;
     width: 87px;
     left: 6px;
-    height: 270px;
+    height: 312px;
     border-left: 1px dashed #FFF;
     border-right: 1px dashed #FFF;
 }
@@ -188,7 +188,6 @@ article {
     bottom: 20px;
     left: -50px;
     z-index: 1;
-    
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -204,24 +203,24 @@ article {
     bottom: 20px;
     right: -50px;
     z-index: 1;
-    
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
 #ribbon p#photo-label {
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
-    font: normal bold 60px/50px 'Open Sans Condensed', sans-serif;
+    font: normal bold 55px/45px 'Open Sans Condensed', sans-serif;
     text-transform: uppercase;
     color: white;
     position: relative;
-    top: 100px;
+    top: 95px;
     left: -48px;
     width: 200px;
     letter-spacing: -1px;
