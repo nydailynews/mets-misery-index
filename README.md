@@ -1,6 +1,20 @@
 # [Mets Misery Index](http://interactive.nydailynews.com/project/mets-misery-index/)
 
+
 Inspired by and based on the [Denver Post’s Rockies Misery Index](https://github.com/denverpost/misery-index)
+
+## Production
+
+### In-article widgets
+
+```html
+<iframe id="misery-injury" scrolling="no" style="width: 100%; height: 300px;" src="http://interactive.nydailynews.com/project/mets-misery-index/widget-injury-tracker.html"></iframe>
+
+<iframe id="misery-poll" scrolling="no" style="width: 100%; height: 300px;" src="http://interactive.nydailynews.com/project/mets-misery-index/widget-fan-misery.html"></iframe>
+
+<iframe id="misery-index" scrolling="no" style="width: 100%; height: 190px;" src="http://interactive.nydailynews.com/project/mets-misery-index/widget-misery.html"></iframe>
+
+```
 
 ## Usage
 
