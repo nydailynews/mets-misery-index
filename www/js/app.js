@@ -375,6 +375,7 @@ var misery = {
         var data = misery.d.daily.slice(0, misery.d.daily.length - 1);
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
         this.c.width = 1000 - margin.left - margin.right;
+        if ( is_mobile ) this.c.width = 600 - margin.left - margin.right;
         this.c.height = 200 - margin.top - margin.bottom;
         //if ( width < 350 ) width = 330;
 
