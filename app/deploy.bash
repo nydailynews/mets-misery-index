@@ -6,6 +6,9 @@ for SHEET in ${SHEETS[@]}; do
     python3 publish.py --sheet=$SHEET
 done
 
+# Take the json that's *almost* there and get it ready for prod
+echo '[' `sed '$s/,$//' < daily.json` ']' > output/met-fans-misery-daily-2018.json
+
 if [ `whoami` = 'webadm' ]
 then
 	cp output/mets* /apps/project/mets-misery-index/output/
