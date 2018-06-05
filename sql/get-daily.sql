@@ -1,1 +1,1 @@
-SELECT CONCAT('{ "date":"', date, '","score":', score, '},') FROM misery_days;
+SELECT CONCAT('{ "date":"', date, '","misery-score":', score, '},') FROM misery_days;

@@ -1,6 +1,5 @@
 # [Mets Misery Index](http://interactive.nydailynews.com/project/mets-misery-index/)
 
-
 Inspired by and based on the [Denver Post’s Rockies Misery Index](https://github.com/denverpost/misery-index)
 
 ## Production
@@ -23,6 +22,7 @@ Here's the new workflow for adding a Mets Misery Index widget to articles:
 
 ```
 
+
 ## Usage
 
 ### How to set up a dev environment
@@ -38,4 +38,3 @@ If you don't have python 3 and virtualenv set up:
 1. `pip3 install virtualenvwrapper`
 1. `VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3`
 1. `source /usr/local/bin/virtualenvwrapper.sh`
-
