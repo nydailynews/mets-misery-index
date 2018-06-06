@@ -466,6 +466,22 @@ var misery = {
 // FAN MISERY CHART
 // Handler for chart and data smoothing operations
 var fanc = {
+    config: {
+    },
+    update_config: function(config) {
+        // Take an external config object and update this config object.
+        for ( var key in config )
+        {
+            if ( config.hasOwnProperty(key) )
+            {
+                this.config[key] = config[key];
+            }
+        }
+    },
+    d: {},
+    on_load_daily: function() {
+        // Process the daily misery scores
+    },
     init: function(year) {
         if ( year == null ) year = 2018;
         fanc.season_dates = season_dates_all;
