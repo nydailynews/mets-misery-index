@@ -280,15 +280,17 @@
             
            <section id="daily-chart">
                 <h2>Mets misery, day by day</h2>
+                <h3>Mets team misery</h3>
                 <figure>
-                    <svg id="daily-misery"></svg>
+                    <svg class="charts" id="daily-misery"></svg>
                     <figcaption>This charts the daily misery score of the New York Mets, as determined by the Daily News sports editors. The chart is current through to yesterday’s misery score.</figcaption>
                     <table></table>
                 </figure>
 
+                <h3>Mets fan misery</h3>
                 <figure>
-                    <svg id="fan-misery-chart"></svg>
-                    <figcaption>This charts the daily misery score of New York Mets fans, based on votes in the Mets misery poll. The chart is current through to yesterday’s fan misery score.</figcaption>
+                    <svg class="charts" id="fan-misery-chart"></svg>
+                    <figcaption>This charts the daily misery score of New York Mets fans, based on votes in the <a href="#fan-misery">Mets misery poll</a>. The chart is current through to yesterday’s fan misery score.</figcaption>
                     <table></table>
                 </figure>
             </section>
@@ -313,7 +315,7 @@
     <script src="//interactive.nydailynews.com/js/d3/d3.v4.min.js"></script>
     <script src="js/gauge.min.js"></script>
     <script src="js/meter.js"></script>
-    <script onload="commentary.init(); misery.init(); injuries.init();" src="js/app.js?v20180507"></script>
+    <script onload="commentary.init(); misery.init(); injuries.init(); fanc.init();" src="js/app.js?v201806"></script>
 
 
 <!-- FOOTER-START -->

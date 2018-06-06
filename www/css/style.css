@@ -21,6 +21,12 @@ article h2 {
     text-align: left;
 }
 
+article h3 {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+}
+
 p.description {
     text-align: left;
     width: 80%;
@@ -488,16 +494,16 @@ rect {
 }
 
 /* Only show certain tick marks on the charts */
-#daily-misery g.x g.tick { display: none; }
+.charts g.x g.tick { display: none; }
 @media only screen and (min-width:750px) {
-    #daily-misery g.x g.tick:nth-child(20n+2) { display: block; }
+    .charts g.x g.tick:nth-child(20n+2) { display: block; }
 }
 @media only screen and (max-width:750px) {
-    #daily-misery g.x g.tick:nth-child(30n+2) { display: block; }
+    .charts g.x g.tick:nth-child(30n+2) { display: block; }
 }
 @media only screen and (max-width:450px) {
-    #daily-misery g.x g.tick:nth-child(30n+2) { display: none; }
-    #daily-misery g.x g.tick:nth-child(35n+2) { display: block; }
+    .charts g.x g.tick:nth-child(30n+2) { display: none; }
+    .charts g.x g.tick:nth-child(35n+2) { display: block; }
 }
 /*--------- END SVG CHART ---------*/
 
@@ -594,7 +600,7 @@ rect {
         width: 90%;
     }
 
-    svg#daily-misery {
+    svg.charts {
         width: 100%;
     }
 }
@@ -675,7 +681,7 @@ rect {
         width: 90%;
     }
 
-    svg#daily-misery {
+    svg.charts {
         width: 100%;
     }
 }
