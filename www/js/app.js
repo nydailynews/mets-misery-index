@@ -369,22 +369,27 @@ var misery = {
         $('.view-more-link').addClass('hide');
     },
     c: {},
+    chart_config: {
+        height: 200,
+        width: 1000,
+        ticks: 6,
+        y_max: 10
+    },
     build_daily: function() {
         // Build out the daily misery chart
         
         var data = misery.d.daily.slice(0, misery.d.daily.length - 1);
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
-        this.c.width = 1000 - margin.left - margin.right;
-        if ( is_mobile ) this.c.width = 600 - margin.left - margin.right;
-        this.c.height = 200 - margin.top - margin.bottom;
-        //if ( width < 350 ) width = 330;
+        this.c.width = this.chart_config.width - margin.left - margin.right;
+        if ( is_mobile ) this.c.width = ( this.chart_config.width - 400 ) - margin.left - margin.right;
+        this.c.height = this.chart_config.height - margin.top - margin.bottom;
 
         var x = d3.scaleBand().range([5, this.c.width], .5);
         var y = d3.scaleLinear().range([this.c.height, 0]);
 
         var x_axis = d3.axisBottom(x);
         var y_axis = d3.axisLeft(y)
-            .ticks(6);
+            .ticks(this.chart_config.ticks);
 
         var chart = d3.select('#daily-misery')
             .attr("width", this.c.width + margin.left + margin.right)
@@ -393,8 +398,7 @@ var misery = {
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         x.domain(this.season_dates.map(function(d) { return misery.format_time(misery.parse_time(d)) }));
-        //y.domain([0, d3.max(misery.d.recent, function(d) { return +d['misery-score']; })]);
-        y.domain([0, 10]);
+        y.domain([0, this.chart_config.y_max]);
         chart.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + this.c.height + ")")
@@ -481,6 +485,7 @@ var fanc = {
     d: {},
     on_load_daily: function() {
         // Process the daily misery scores
+        console.info(fanc.d, fanc);
     },
     init: function(year) {
         if ( year == null ) year = 2018;
