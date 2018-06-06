@@ -7,7 +7,7 @@ for SHEET in ${SHEETS[@]}; do
 done
 
 # Take the json that's *almost* there and get it ready for prod
-echo '[' `sed '$s/,$//' < daily.json` ']' > output/met-fans-misery-daily-2018.json
+echo '[' `sed '$s/,$//' < daily.json` ']' > output/mets-fans-misery-daily-2018.json
 
 if [ `whoami` = 'webadm' ]
 then
