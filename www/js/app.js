@@ -1,4 +1,4 @@
-// These objects handle most of the interaction on the page.
+// These objects handle most of the interaction.
 
 // UTILS
 var utils = {
@@ -462,6 +462,19 @@ var misery = {
         utils.get_json('output/mets-misery-daily-' + year + '.json?' + utils.rando(), misery, misery.on_load_daily);
     }
 }
+
+// FAN MISERY CHART
+// Handler for chart and data smoothing operations
+var fanc = {
+    init: function(year) {
+        if ( year == null ) year = 2018;
+        fanc.season_dates = season_dates_all;
+        if ( typeof fanc_config !== 'undefined' ) fanc.update_config(fanc_config);
+        
+        // get_json takes three params: filepath, the object that's calling it, and a callback.
+        utils.get_json('output/mets-fans-misery-daily-' + year + '.json?' + utils.rando(), fanc, fanc.on_load_daily);
+    }
+};
 
 // INJURY TRACKER
 // First init fires, then on_load.
