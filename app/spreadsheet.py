@@ -18,7 +18,7 @@ class SheetDiff:
         import filecmp
         self.prev = prev
 
-    def check_diff(self, new)
+    def check_diff(self, new):
         """ Given the path for the new json file, compare its contents against
             the previous.
             """
