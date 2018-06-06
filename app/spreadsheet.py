@@ -171,9 +171,9 @@ class Sheet:
 
         if records:
             # Dump the record in the check file so we can diff it.
-            json.dump(records, fn['json_check'])
-            diff = SheetDiff('%s/output/%s.json' % (self.directory, self.filename))
-            diff.check_diff('%s/output/%s-check.json' % (self.directory, self.filename))
+            #json.dump(records, fn['json_check'])
+            #diff = SheetDiff('%s/output/%s.json' % (self.directory, self.filename))
+            #diff.check_diff('%s/output/%s-check.json' % (self.directory, self.filename))
 
             json.dump(records, fn['json'])
 
