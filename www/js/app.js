@@ -370,6 +370,7 @@ var misery = {
     },
     c: {},
     chart_config: {
+        id: 'daily-misery',
         height: 200,
         width: 1000,
         ticks: 6,
@@ -378,7 +379,7 @@ var misery = {
     build_daily: function() {
         // Build out the daily misery chart
         
-        var data = misery.d.daily.slice(0, misery.d.daily.length - 1);
+        var data = this.d.daily.slice(0, this.d.daily.length - 1);
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
         this.c.width = this.chart_config.width - margin.left - margin.right;
         if ( is_mobile ) this.c.width = ( this.chart_config.width - 400 ) - margin.left - margin.right;
@@ -391,7 +392,7 @@ var misery = {
         var y_axis = d3.axisLeft(y)
             .ticks(this.chart_config.ticks);
 
-        var chart = d3.select('#daily-misery')
+        var chart = d3.select('#' + this.chart_config.id)
             .attr("width", this.c.width + margin.left + margin.right)
             .attr("height", this.c.height + margin.top + margin.bottom)
             .append("g")
@@ -524,9 +525,23 @@ var fanc = {
         console.warn(d);
         return d;
     },
+    c: {},
+    chart_config: {
+        id: 'fan-misery-chart',
+        height: 200,
+        width: 1000,
+        ticks: 6,
+        y_max: 10
+    },
+    build_daily: misery.build_daily,
     on_load_daily: function() {
         // Process the daily misery scores
-        fanc.rolling_average_three(fanc.data, 'date', 'misery-score', 1);
+        fanc.d.daily = fanc.rolling_average_three(fanc.data, 'date', 'misery-score', 1);
+        if ( typeof d3 === 'object' ) {
+            fanc.parse_time = d3.timeParse('%Y-%m-%d');
+            fanc.format_time = d3.timeFormat('%B %e');
+            fanc.build_daily();
+        }
     },
     init: function(year) {
         if ( year == null ) year = 2018;
