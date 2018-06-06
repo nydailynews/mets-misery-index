@@ -483,9 +483,50 @@ var fanc = {
         }
     },
     d: {},
+    rolling_average: function(data, key_key, value_key, round_to, roll_for) {
+        // Given an ordered array of objects, its keys and the number of items we want to
+        // create a rolling average for, and the number of decimal places
+        // we round to, return a new object similar to the last.
+        //
+        var l = data.length - Math.ceiling(roll_for/2);
+        var d = [];
+        var field = '';
+        for ( var i = 0, j = 1, h = -1; i < l; i ++ && j ++ && h ++ ) {
+            field = data[i][key_key];
+
+
+        }
+
+    },
+    get_average: function(records, round_to) {
+        // Return the average of the given records.
+        if ( round_to === null ) round_to = 0;
+        else round_to = Math.pow(10, round_to);
+        var l = records.length;
+        var sum = 0;
+        for ( var i = 0; i < l; i ++ ) sum += records[i];
+        return Math.round( ( sum/l ) * round_to ) / round_to;
+    },
+    rolling_average_three: function(data, key_key, value_key, round_to) {
+        // Given an ordered array of objects, its keys and the number of decimal places
+        // we round to, return a new object similar to the last.
+
+        var l = data.length - 2;
+        var d = [];
+        var field = '';
+        var value;
+        for ( var i = 0, j = 1, h = -1; i < l; i ++ && j ++ && h ++ ) {
+            field = data[i][key_key];
+            if ( h >= 0 ) value = this.get_average([data[h][value_key], data[i][value_key], data[j][value_key]], round_to);
+            else value = this.get_average([data[i][value_key], data[j][value_key]], round_to);
+            d.push({[key_key]: field, [value_key]: value});
+        }
+        console.warn(d);
+        return d;
+    },
     on_load_daily: function() {
         // Process the daily misery scores
-        console.info(fanc.d, fanc);
+        fanc.rolling_average_three(fanc.data, 'date', 'misery-score', 1);
     },
     init: function(year) {
         if ( year == null ) year = 2018;
