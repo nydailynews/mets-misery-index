@@ -350,21 +350,20 @@ var misery = {
     photos: [1,2,3,7,5,2,3,4,2,3,1,1],
     update_photo: function() {
         // We do yesterday's misery because we don't know precisely when today's misery will land / if it will land.
+        // Put together the photo's image path.
         var score = this.yesterday['misery-score'];
-        var score_bucket = score;
-        var img_name = 'mets-misery-';
+        var img_path = 'img/mets-misery-';
         if ( score > 10 ) {
-			score_bucket = 11;
-            img_name += score_bucket;
+            img_path += 11;
         }
         else {
-            var photo_index = utils.rando_by_day(this.photos[score_bucket]);
+            var photo_index = utils.rando_by_day(this.photos[score]);
             if ( photo_index === 0 ) photo_index += 1;
-            img_name += score_bucket + '-' + photo_index;
+            img_path += score + '-' + photo_index;
         }
-        img_name += '.jpg';
+        img_path += '.jpg';
 		
-        document.getElementById('lead-photo').setAttribute('src', 'img/' + img_name);
+        document.getElementById('lead-photo').setAttribute('src', img_path);
     },
     update_widget: function() {
         // The widget misery score works and looks like the fan misery score.
