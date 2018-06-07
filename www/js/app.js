@@ -450,7 +450,7 @@ var misery = {
         if ( !! document.getElementById('ribbon') ) misery.update_ribbon_text();
         if ( !! document.getElementById('meter-number') ) misery.update_meter();
         if ( !! document.getElementById('lead-photo') ) misery.update_photo();
-        if ( typeof d3 === 'object' ) {
+        if ( typeof d3 === 'object' && typeof misery.parse_time !== 'function' ) {
             misery.parse_time = d3.timeParse('%Y-%m-%d');
             misery.format_time = d3.timeFormat('%B %e');
             misery.build_daily();
@@ -538,8 +538,8 @@ var fanc = {
         // Process the daily misery scores
         fanc.d.daily = fanc.rolling_average_three(fanc.data, 'date', 'misery-score', 1);
         if ( typeof d3 === 'object' ) {
-            fanc.parse_time = d3.timeParse('%Y-%m-%d');
-            fanc.format_time = d3.timeFormat('%B %e');
+            misery.parse_time = d3.timeParse('%Y-%m-%d');
+            misery.format_time = d3.timeFormat('%B %e');
             fanc.build_daily();
         }
     },
