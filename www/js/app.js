@@ -14,6 +14,12 @@ var utils = {
         if ( this_year == +parts[0] ) return month + ' ' + day;
         return month + ' ' + day + ', ' + parts[0];
     },
+    to_ordinal: function(integer) {
+		// Cribbed from https://ecommerce.shopify.com/c/ecommerce-design/t/ordinal-number-in-javascript-1st-2nd-3rd-4th-29259
+		var s = ["th","st","nd","rd"],
+			v = n % 100;
+		return n+(s[(v-20)%10]||s[v]||s[0]);
+	},
     rando: function() {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -129,6 +135,8 @@ var lt = {
         // yankees-score: "3"
         var html = 'Mets fall ' + rec['opponent-score'] + '-' + rec['mets-score'] + '.';
         if ( +rec['mets-score'] > +rec['opponent-score'] ) html = 'Mets win ' + rec['mets-score'] + '-' + rec['opponent-score'] + '.';
+        if ( +rec['streak'] < -2 ) html += ' This was the team’s ' + utils.to_ordinal(Math.abs(+rec['streak'])) + ' loss in a row.';
+        if ( +rec['streak'] > -2 ) html += ' This was the team’s ' + utils.to_ordinal(Math.abs(+rec['streak'])) + ' loss in a row.';
         if ( rec['gamer-url'] != '' ) html += ' Game story: <a href="' + rec['gamer-url'] + '">' + rec['gamer-headline'] + '</a>.'; 
         return html;
     },
