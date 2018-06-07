@@ -27,6 +27,18 @@ var utils = {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
     },
+    rando_by_day: function(max) {
+        // Generate a semi-random integer from zero to the max argument,
+        // based on what the date is.
+        var d = new Date().getDate();
+        return d % +max;
+    },
+	get_rando_by_day: function(arr) {
+        // Given an array, return a random item from it based on today's date.
+        var l = arr.length;
+        var index = this.rando_by_day(l);
+        return arr[index];
+    },
     add_zero: function(i) {
         // For values less than 10, return a zero-prefixed version of that value.
         if ( +i < 10 ) return "0" + i;
@@ -333,12 +345,26 @@ var misery = {
             gauge.set(score);
         }
     },
+    // The number of available photos we have in each misery-level slot,
+    // i.e. misery-0 has one photo, misery-3 has seven photos.
+    photos: [1,2,3,7,5,2,3,4,2,3,1,1],
     update_photo: function() {
         // We do yesterday's misery because we don't know precisely when today's misery will land / if it will land.
         var score = this.yesterday['misery-score'];
         var score_bucket = score;
-        if ( score > 10 ) score_bucket = 10;
-        document.getElementById('lead-photo').setAttribute('src', 'img/mets-misery-' + score_bucket + '-1.jpg');
+        var img_name = 'mets-misery-';
+        if ( score > 10 ) {
+			score_bucket = 11;
+            img_name += score_bucket;
+        }
+        else {
+            var photo_index = utils.rando_by_day(this.photos[score_bucket]);
+            if ( photo_index === 0 ) photo_index += 1;
+            img_name += score_bucket + '-' + photo_index;
+        }
+        img_name += '.jpg';
+		
+        document.getElementById('lead-photo').setAttribute('src', 'img/' + img_name);
     },
     update_widget: function() {
         // The widget misery score works and looks like the fan misery score.
