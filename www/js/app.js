@@ -142,15 +142,17 @@ var lt = {
     },
     on_load: function() {
         // See if we have a record for today's or yesterday's game, and if we do, add it to the interactive.
-        var yesterday = misery.yesterday['date'];
-        var latest = misery.latest['date'];
-        var l = lt.data.length;
-        for ( var i = 0; i < l; i ++ ) {
-            //console.info(yesterday, lt.data[i]['date']);
-            if ( yesterday == lt.data[i]['date'] ) var record = lt.data[i];
-        }
-        //var record = lt.data[l - 3];
-        if ( typeof record !== 'undefined' && record['opponent-score'] != '' ) lt.publish_latest(record);
+		window.setTimeout( function() {
+			var yesterday = misery.yesterday['date'];
+			var latest = misery.latest['date'];
+			var l = lt.data.length;
+			for ( var i = 0; i < l; i ++ ) {
+				//console.info(yesterday, lt.data[i]['date']);
+				if ( yesterday == lt.data[i]['date'] ) var record = lt.data[i];
+			}
+			//var record = lt.data[l - 3];
+			if ( typeof record !== 'undefined' && record['opponent-score'] != '' ) lt.publish_latest(record);
+		}, 3000);
     },
     init: function(year) {
         if ( year == null ) year = 2018;
@@ -447,17 +449,19 @@ var misery = {
             .attr("y", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return y(+d['misery-score']); })
             .attr("height", function(d, e, f) { 
                 //console.log(d, e, f, g);
-                if ( typeof d['misery-score'] == 'undefined' ) return 0;
-                //console.log("HA", misery.c.height, y(+d['misery-score']));
-                return misery.c.height - y(+d['misery-score']); }
-                );
+                if ( typeof d['misery-score'] === 'undefined' ) return 0;
+                if ( typeof misery.c.height !== 'undefined' ) var h = misery.c.height;
+                else var h = fanc.c.height;
+                console.log("HEIGHT", h, y(+d['misery-score']));
+                return h - y(+d['misery-score']);
+                });
 
     },
     on_load_recent: function() {
         // Process the recent misery
         misery.d.recent = misery.data;
-        if ( !! document.getElementById('recent') ) misery.build_recent();
         // The "!!" makes the following statement evaluate to a boolean.
+        if ( !! document.getElementById('recent') ) misery.build_recent();
         if ( !! document.getElementById('datestamp') ) document.getElementById('datestamp').textContent = utils.ap_date(misery.d.recent[0]['date']);
     },
     on_load_daily: function() {
