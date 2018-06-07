@@ -17,8 +17,8 @@ var utils = {
     to_ordinal: function(integer) {
 		// Cribbed from https://ecommerce.shopify.com/c/ecommerce-design/t/ordinal-number-in-javascript-1st-2nd-3rd-4th-29259
 		var s = ["th","st","nd","rd"],
-			v = n % 100;
-		return n+(s[(v-20)%10]||s[v]||s[0]);
+			v = integer % 100;
+		return integer+(s[(v-20)%10]||s[v]||s[0]);
 	},
     rando: function() {
         var text = "";
