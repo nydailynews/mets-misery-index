@@ -456,12 +456,15 @@ article ul {
     margin-top: 30px;
 }
 
-#daily-chart {
+#daily-chart, #gamer {
     -ms-grid-column: 1;
     grid-column: 1 / 4;
-    -ms-grid-row: 6;
-    grid-row: 6;
     margin-top: 30px;
+    grid-row: 7;
+}
+
+#gamer {
+    grid-row: 6;
 }
 
 /*--------- RECENT MISERY ---------*/

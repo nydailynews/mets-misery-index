@@ -104,12 +104,12 @@ var lt = {
     },
     publish_latest: function(rec) {
         // Take a game record object and put it on the page.
-        var parent = document.getElementById('tweet');
-        var el = document.createElement('section');
-        el.id = 'gamer';
+        var el = document.getElementById('gamer');
+        //var el = document.createElement('section');
+        //el.id = 'gamer';
         var blurb = lt.write_blurb(rec);
         el.innerHTML = '<h2 style="margin-top:20px;">Yesterday’s Mets Game</h2>\n <p class="description">' + blurb + '</p>';
-        parent.appendChild(el);
+        //parent.appendChild(el);
     },
     write_blurb: function(rec) {
         // Turn a game record object into a paragraph.
@@ -138,9 +138,11 @@ var lt = {
         var latest = misery.latest['date'];
         var l = lt.data.length;
         for ( var i = 0; i < l; i ++ ) {
-            if ( yesterday == lt.data[i]['date'] ) record = lt.data[i];
+            //console.info(yesterday, lt.data[i]['date']);
+            if ( yesterday == lt.data[i]['date'] ) var record = lt.data[i];
         }
-        if ( record['opponent-score'] != '' ) lt.publish_latest(record);
+        //var record = lt.data[l - 3];
+        if ( typeof record !== 'undefined' && record['opponent-score'] != '' ) lt.publish_latest(record);
     },
     init: function(year) {
         if ( year == null ) year = 2018;
@@ -266,6 +268,7 @@ var fanm = {
 // MISERY INDEX
 // First init fires, then on_load.
 var misery = {
+    name: 'misery',
     config: {
     },
     update_config: function(config) {
@@ -381,9 +384,16 @@ var misery = {
         
         var data = this.d.daily.slice(0, this.d.daily.length - 1);
         var margin = { top: 20, right: 20, bottom: 30, left: 30 };
-        this.c.width = this.chart_config.width - margin.left - margin.right;
-        if ( is_mobile ) this.c.width = ( this.chart_config.width - 400 ) - margin.left - margin.right;
-        this.c.height = this.chart_config.height - margin.top - margin.bottom;
+        if ( this.name === 'misery' ) {
+            misery.c.width = misery.chart_config.width - margin.left - margin.right;
+            if ( is_mobile ) misery.c.width = ( misery.chart_config.width - 400 ) - margin.left - margin.right;
+            misery.c.height = misery.chart_config.height - margin.top - margin.bottom;
+        }
+        else if ( this.name === 'fanc' ) {
+            fanc.c.width = fanc.chart_config.width - margin.left - margin.right;
+            if ( is_mobile ) fanc.c.width = ( fanc.chart_config.width - 400 ) - margin.left - margin.right;
+            fanc.c.height = fanc.chart_config.height - margin.top - margin.bottom;
+        }
 
         var x = d3.scaleBand().range([5, this.c.width], .5);
         var y = d3.scaleLinear().range([this.c.height, 0]);
@@ -427,7 +437,12 @@ var misery = {
             .attr("x", function(d) { return x(misery.format_time(misery.parse_time(d['date']))); })
             .attr("width", x.bandwidth())
             .attr("y", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return y(+d['misery-score']); })
-            .attr("height", function(d) { if ( typeof d['misery-score'] == 'undefined' ) return 0; return misery.c.height - y(+d['misery-score']); });
+            .attr("height", function(d, e, f) { 
+                //console.log(d, e, f, g);
+                if ( typeof d['misery-score'] == 'undefined' ) return 0;
+                //console.log("HA", misery.c.height, y(+d['misery-score']));
+                return misery.c.height - y(+d['misery-score']); }
+                );
 
     },
     on_load_recent: function() {
@@ -471,6 +486,7 @@ var misery = {
 // FAN MISERY CHART
 // Handler for chart and data smoothing operations
 var fanc = {
+    name: 'fanc',
     config: {
     },
     update_config: function(config) {
@@ -522,7 +538,6 @@ var fanc = {
             else value = this.get_average([data[i][value_key], data[j][value_key]], round_to);
             d.push({[key_key]: field, [value_key]: value});
         }
-        console.warn(d);
         return d;
     },
     c: {},
