@@ -148,7 +148,7 @@ var lt = {
         var html = 'Mets fall ' + rec['opponent-score'] + '-' + rec['mets-score'] + '.';
         if ( +rec['mets-score'] > +rec['opponent-score'] ) html = 'Mets win ' + rec['mets-score'] + '-' + rec['opponent-score'] + '.';
         if ( +rec['streak'] < -2 ) html += ' This was the team’s ' + utils.to_ordinal(Math.abs(+rec['streak'])) + ' loss in a row.';
-        if ( +rec['streak'] > -2 ) html += ' This was the team’s ' + utils.to_ordinal(Math.abs(+rec['streak'])) + ' loss in a row.';
+        if ( +rec['streak'] > 2 ) html += ' This was the team’s ' + utils.to_ordinal(Math.abs(+rec['streak'])) + ' loss in a row.';
         if ( rec['gamer-url'] != '' ) html += ' Game story: <a href="' + rec['gamer-url'] + '">' + rec['gamer-headline'] + '</a>.'; 
         return html;
     },
