@@ -8,10 +8,13 @@ Inspired by and based on the [Denver Post’s Rockies Misery Index](https://gith
 
 Here's the new workflow for adding a Mets Misery Index widget to articles:
 
-1. Go to https://github.com/nydailynews/mets-misery-index#in-article-widgets
-2. That will take you to the part of the page where the markup is for each of the three widgets, misery-injury, misery-poll and misery-index. *Choose which one of those you want and triple-click the line with that markup.*
+1. Go to https://github.com/nydailynews/mets-misery-index#in-article-widgets . That will take you to the part of the page where the markup is for each of the three widgets: **misery-injury, misery-poll and misery-index.**
+2. Choose which of the three widgets you want and triple-click the line with that markup.
 3. You should have the line with the markup selected now. Copy it to your clipboard.
-4. In SNAP, in the article, create a new HTML embed. Paste the contents of your clipboard into the field. It should look something like this:
+4. In SNAP, edit the article you want to add the widget to. Then:
+    1. Create a new HTML embed.
+    2. Paste the contents of your clipboard into the field.
+    3. It should look something like this:
 
 ```html
 <iframe id="misery-injury" scrolling="no" style="width: 100%; height: 310px; border: 0;" src="http://interactive.nydailynews.com/project/mets-misery-index/widget-injury-tracker.html"></iframe>
